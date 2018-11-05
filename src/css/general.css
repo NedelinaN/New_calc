@@ -6,6 +6,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   font-family: 'Roboto', 'Aria;';
   font-size: 16px;
@@ -63,5 +67,11 @@ li {
     margin-right: 10px;
     font-weight: 400;
     color: var(--grey);
+  }
+}
+
+button {
+  &[disabled] {
+    display: none;
   }
 }

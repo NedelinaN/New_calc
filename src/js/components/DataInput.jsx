@@ -16,13 +16,15 @@ export default class DataInput extends React.Component {
         <label htmlFor="file" className="b-download__label">
           Выполнить расчёт
         </label>
-        <input
-          type="file"
-          className="b-download__input"
-          id="file"
-          accept={SheetJSFT}
-          onChange={this.handleChange}
-        />
+        <div className="b-download__input-container">
+          <input
+            type="file"
+            className="b-download__input"
+            id="file"
+            accept={SheetJSFT}
+            onChange={this.handleChange}
+          />
+        </div>
       </form>
     );
   }

@@ -57,7 +57,7 @@ export default class App extends React.Component {
             <OutTable data={this.state.data} cols={this.state.cols} />
             <button
               disabled={!this.state.data.length}
-              className="b-download__btn btn btn--success"
+              className="b-download__btn btn"
               onClick={this.exportFile}
             >
               Скачать
