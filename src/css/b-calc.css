@@ -1,0 +1,10 @@
+.b-calc {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+
+  .b-title2 {
+    text-align: left;
+  }
+}

@@ -5,6 +5,7 @@ import DragDropFile from "./DragDropFile.jsx";
 import DataInput from "./DataInput.jsx";
 import OutTable from "./OutTable.jsx";
 import { make_cols } from "./helpers";
+import { calcData } from "./calcData";
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -14,6 +15,7 @@ export default class App extends React.Component {
     };
     this.handleFile = this.handleFile.bind(this);
     this.exportFile = this.exportFile.bind(this);
+    // this.buildParentItems = this.buildParentItems.bind(this)
   }
   handleFile(file /*:File*/) {
     /* Boilerplate to set up FileReader */
@@ -42,6 +44,36 @@ export default class App extends React.Component {
     /* generate XLSX file and send to client */
     XLSX.writeFile(wb, "result.xlsx");
   }
+
+  buildParentItems() {
+    let parentItems = [];
+
+    calcData.forEach((elParent, index) => {
+      parentItems.push(
+        <div className="b-calc__item" key={index}>
+          {this.buildChildItems(elParent)}
+        </div>
+      );
+    });
+
+    return parentItems;
+  }
+
+  buildChildItems(elParent) {
+    let childItems = [];
+
+    elParent.forEach((elChild, index) => {
+      childItems.push(
+        <div className="b-calc__item-line" key={index}>
+          <div className="b-calc__item-prop">{elChild.prop}</div>
+          <div className="b-calc__item-value">{elChild.value}</div>
+        </div>
+      );
+    });
+
+    return childItems
+  }
+
   render() {
     return (
       <>
@@ -55,14 +87,20 @@ export default class App extends React.Component {
           <DragDropFile handleFile={this.handleFile}>
             <DataInput handleFile={this.handleFile} />
             <OutTable data={this.state.data} cols={this.state.cols} />
-            <button
+            {/* <button
               disabled={!this.state.data.length}
               className="b-download__btn btn"
               onClick={this.exportFile}
             >
               Скачать
-            </button>
+            </button> */}
           </DragDropFile>
+          <div className="b-results">
+            <div className="b-calc">
+              <h2 className="b-title2">Результаты расчётов: </h2>
+              <div className="b-calc__items">{this.buildParentItems()}</div>
+            </div>
+          </div>
         </div>
       </>
     );

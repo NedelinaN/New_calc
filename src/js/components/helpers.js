@@ -1,7 +1,7 @@
 import XLSX from "xlsx";
 
 export const SheetJSFT = [
-	"xlsx", "xlsb", "xlsm", "xls", "xml", "csv", "txt", "ods", "fods", "uos", "sylk", "dif", "dbf", "prn", "qpw", "123", "wb*", "wq*", "html", "htm"
+	"xlsx", "xlsb", "xlsm", "xls", "xml", "csv", "ods", "fods", "uos", "sylk", "dif", "dbf", "prn", "qpw", "123", "wb*", "wq*", "html", "htm"
 ].map(function(x) { return "." + x; }).join(",");
 
 /* generate an array of column objects */

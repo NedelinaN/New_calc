@@ -35,5 +35,8 @@
     "webpack-md5-hash": "0.0.6",
     "webpack-svgstore-plugin": "^4.1.0",
     "xlsx": "^0.14.0"
+  },
+  "dependencies": {
+    "stylelint-config-prettier": "^4.0.0"
   }
 }
