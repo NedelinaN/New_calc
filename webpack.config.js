@@ -1,13 +1,14 @@
 const path = require("path");
 const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+//const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const WebpackMd5Hash = require("webpack-md5-hash");
+//const WebpackMd5Hash = require("webpack-md5-hash");
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+//const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const devMode = process.env.npm_lifecycle_event;
-const svgStore = require("webpack-svgstore-plugin")
+//const svgStore = require("webpack-svgstore-plugin")
 
+// TODO заменить postCss на актуальную версию, добавить поддержку stylelint
 const postCss = {
   cssNext: require('postcss-cssnext'),
   import: require('postcss-import'),
@@ -15,14 +16,14 @@ const postCss = {
   flexbugs: require("postcss-flexbugs-fixes"),
   inputStyle: require("postcss-input-style"),
   objectFit: require("postcss-object-fit-images")
-}
+} 
 
 module.exports = {
-  entry: { main: "./src/js/index.js" },
+  entry: { main: "./src/index.js" },
 
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: devMode == 'prod' ? '[name].[chunkhash].js' : '[name].js',
+    filename: 'build.js',
     publicPath: '/'  
   },
 
@@ -35,16 +36,19 @@ module.exports = {
   },
 
   devServer: {
-    host: 'localhost',
+    compress: true,
     port: 80,
-    contentBase: path.resolve(__dirname, 'dist')    
+    hot: true,
+    historyApiFallback: {
+			index: './src/index.html',
+		},    
   },
 
-  optimization: {
-    splitChunks: {
-      chunks: 'all'
-    }
-  },
+  // optimization: {
+  //   splitChunks: {
+  //     chunks: 'all'
+  //   }
+  // },
 
   resolve: {
     modules: ['node_modules'],
@@ -91,52 +95,21 @@ module.exports = {
             }
           }
         ]
-      },
-      {
-        test: /\.(svg)$/,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            limit: 100000
-          }
-        }]
       }
     ]
   },
 
   plugins: [
     new MiniCssExtractPlugin({
-        filename: devMode == 'prod' ? 'style.[contenthash].css' : 'style.css'
+        filename: 'build.css'
     }),
-
-    new HtmlWebpackPlugin({
-        inject: false,
-        hash: true,
-        template: "./src/html/index.html",
-        filename: "index.html"
-      }),
-    new WebpackMd5Hash(),
-
-    new webpack.optimize.LimitChunkCountPlugin({
-      maxChunks: 2,
-    }),
-
-    new svgStore({
-      svgoOptions: {
-        plugins: [{
-          removeTitle: true
-        }]
-      }
-    }),   
+//TODO: почитать настройка webpack devserver HMR   
+    new webpack.HotModuleReplacementPlugin()
   ],
-
+  
+//TODO:  актуальная оптимизация js, css
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        sourceMap: true,
-        parallel: true,
-      }),
       new OptimizeCssAssetsPlugin()
     ]
   }

@@ -4,7 +4,7 @@
   "description": "Calculation of load to the electrical factory`s system",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --mode development",
+    "start": "webpack-dev-server",
     "prod": "webpack --mode production"
   },
   "author": "Anastasia Nedelina",
