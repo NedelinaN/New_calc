@@ -24,6 +24,16 @@ module.exports = {
 		'plugin:security/recommended',
 	],
 
+	parserOptions: {
+		ecmaVersion: 6,
+		sourceType: 'module',
+		ecmaFeatures: {
+			jsx: true,
+			modules: true,
+			experimentalObjectRestSpread: true,
+		},
+	},
+
 	plugins: [
 		// Используем eslint-plugin-react
 		'react',
