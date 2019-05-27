@@ -10,6 +10,8 @@ module.exports = {
     filename: 'build.js', 
   },
 
+  mode: development,
+
   devtool: devMode == 'dev' ? 'source-map' : 'none',
 
   module: {
@@ -30,4 +32,12 @@ module.exports = {
       }
     ]
   },
+
+  devServer: {    
+    compress: true,
+    port: 80,
+    index: './dist/index.html',
+    historyApiFallback: true,    
+    hotOnly: true
+}
 }
