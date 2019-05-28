@@ -2,15 +2,15 @@ const path = require("path");
 const webpack = require("webpack");
 const devMode = process.env.npm_lifecycle_event;
 
+
 module.exports = {
   entry: './src/index.js',
 
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'build.js', 
+    publicPath: "/",
   },
-
-  mode: development,
 
   devtool: devMode == 'dev' ? 'source-map' : 'none',
 
@@ -36,8 +36,12 @@ module.exports = {
   devServer: {    
     compress: true,
     port: 80,
-    index: './dist/index.html',
+    index: './src/index.html',
     historyApiFallback: true,    
-    hotOnly: true
-}
+    hot: true
+},
+
+plugins: [
+  new webpack.HotModuleReplacementPlugin()
+]
 }

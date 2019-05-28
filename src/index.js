@@ -1,5 +1,4 @@
-import '@csstools/normalize.css';
-import "../css/styles";
+import "./styles/styles";
 
 import React from 'react'
 import { render } from 'react-dom'
