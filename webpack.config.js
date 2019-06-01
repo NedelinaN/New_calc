@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const devMode = process.env.npm_lifecycle_event;
 
 
@@ -25,23 +26,27 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
-          { loader: 'css-loader', options: { importLoaders: 1 } },
-          'postcss-loader'
+          'style-loader', MiniCssExtractPlugin.loader, 'css-loader' ,'postcss-loader'      
+          
         ]
       }
     ]
   },
 
-  devServer: {    
+  devServer: { 
+    contentBase: path.join(__dirname, 'dist'),   
     compress: true,
     port: 80,
-    index: './src/index.html',
+    index: './index.html',
     historyApiFallback: true,    
     hot: true
 },
 
 plugins: [
-  new webpack.HotModuleReplacementPlugin()
+  new webpack.HotModuleReplacementPlugin(),
+
+  new MiniCssExtractPlugin({
+    filename: 'build.css',
+  })
 ]
 }
