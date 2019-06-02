@@ -33,7 +33,12 @@ module.exports = {
 				test: /\.css$/,
 				use: [
 					'css-hot-loader?reloadAll=true',
-					MiniCssExtractPlugin.loader,
+					{
+						loader: MiniCssExtractPlugin.loader,
+						options: {
+							hmr: process.env.NODE_ENV === 'development',
+						},
+					},
 					'css-loader',
 					{
 						loader: 'postcss-loader',

@@ -20,5 +20,10 @@
 		"comments": false,
 		"strings": false
 	},
-	"editor.quickSuggestionsDelay": 10
+	"editor.quickSuggestionsDelay": 10,
+
+	// Добавляем правило, для работы (VSCode extension postcss-sugarss-language)
+	"files.associations": {
+		"*.css": "postcss"
+	}
 }
