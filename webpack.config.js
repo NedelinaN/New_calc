@@ -1,52 +1,57 @@
-const path = require("path");
-const webpack = require("webpack");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const devMode = process.env.npm_lifecycle_event;
+/* eslint-disable no-undef */
+const path = require('path')
+const webpack = require('webpack')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const devMode = process.env.npm_lifecycle_event
 
+const postCss = {
+	import: require('postcss-import'),
+	nested: require('postcss-nested'),
+}
 
 module.exports = {
-  entry: './src/index.js',
+	entry: './src/index.js',
 
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'build.js', 
-    publicPath: "/",
-  },
+	output: {
+		path: path.resolve(__dirname, 'dist'),
+		filename: 'build.js',
+		publicPath: '/',
+	},
 
-  devtool: devMode == 'dev' ? 'source-map' : 'none',
+	devtool: devMode == 'dev' ? 'source-map' : 'none',
 
-  module: {
-    rules: [{
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader', MiniCssExtractPlugin.loader, 'css-loader' ,'postcss-loader'      
-          
-        ]
-      }
-    ]
-  },
+	module: {
+		rules: [
+			{
+				test: /\.(js|jsx)$/,
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader',
+				},
+			},
+			{
+				test: /\.css$/,
+				use: [
+					'css-hot-loader?reloadAll=true',
+					MiniCssExtractPlugin.loader,
+					'css-loader',
+					{
+						loader: 'postcss-loader',
+						options: {
+							ident: 'postcss',
+							plugins: () => [postCss.import(), postCss.nested()],
+						},
+					},
+				],
+			},
+		],
+	},
 
-  devServer: { 
-    contentBase: path.join(__dirname, 'dist'),   
-    compress: true,
-    port: 80,
-    index: './index.html',
-    historyApiFallback: true,    
-    hot: true
-},
+	plugins: [
+		new webpack.HotModuleReplacementPlugin(),
 
-plugins: [
-  new webpack.HotModuleReplacementPlugin(),
-
-  new MiniCssExtractPlugin({
-    filename: 'build.css',
-  })
-]
+		new MiniCssExtractPlugin({
+			filename: 'build.css',
+		}),
+	],
 }
