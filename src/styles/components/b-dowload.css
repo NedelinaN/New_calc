@@ -1,11 +1,12 @@
 .b-download {
-   &__form {
-       display: flex;
-       flex-direction: column;
-       align-items: center;
-   }
+	&__form {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		color: green;
+	}
 
-   &__label {
-       margin-bottom: 15px;
-   }
+	&__label {
+		margin-bottom: 15px;
+	}
 }

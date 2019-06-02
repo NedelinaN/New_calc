@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader/root'
 import React, { Component } from 'react'
 import XLSX from 'xlsx'
 
@@ -6,7 +7,8 @@ import DataInput from './DataInput.jsx'
 import OutTable from './OutTable.jsx'
 import { make_cols } from './helpers'
 import { calcData } from './calcData'
-export default class App extends React.Component {
+
+class App extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -104,3 +106,5 @@ export default class App extends React.Component {
 		)
 	}
 }
+
+export default hot(App)

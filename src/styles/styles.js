@@ -1,6 +1,10 @@
-require.context("./components", true, /\.css$/);
+function importAll(r) {
+	r.keys().forEach(r)
+}
 
-require("./general.css");
-require("./colors.css");
-require("./fonts.css");
+importAll(require.context('./components', true, /\.css$/))
+
+require('./general.css')
+require('./colors.css')
+require('./fonts.css')
 // require("./helpers.css");

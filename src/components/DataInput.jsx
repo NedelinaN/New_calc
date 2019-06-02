@@ -3,7 +3,6 @@ import { SheetJSFT } from './helpers'
 
 export default class DataInput extends React.Component {
 	constructor(props) {
-		console.log('test')
 		super(props)
 		this.handleChange = this.handleChange.bind(this)
 	}

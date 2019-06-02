@@ -24,6 +24,12 @@ module.exports = {
 
 	devtool: devMode == 'dev' ? 'source-map' : 'none',
 
+	resolve: {
+		alias: {
+			'react-dom': '@hot-loader/react-dom',
+		},
+	},
+
 	module: {
 		rules: [
 			{
@@ -31,12 +37,17 @@ module.exports = {
 				exclude: /node_modules/,
 				use: {
 					loader: 'babel-loader',
+					options: {
+						cacheDirectory: true,
+						plugins: ['react-hot-loader/babel'],
+						presets: ['@babel/preset-env', '@babel/preset-react'],
+					},
 				},
 			},
 			{
 				test: /\.css$/,
 				use: [
-					'css-hot-loader?reloadAll=true',
+					'css-hot-loader',
 					{
 						loader: MiniCssExtractPlugin.loader,
 						options: {
@@ -64,8 +75,6 @@ module.exports = {
 	},
 
 	plugins: [
-		new webpack.HotModuleReplacementPlugin(),
-
 		new MiniCssExtractPlugin({
 			filename: 'build.css',
 		}),
