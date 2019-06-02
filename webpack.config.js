@@ -1,10 +1,14 @@
 /* eslint-disable no-undef */
 const path = require('path')
 const webpack = require('webpack')
+const TerserPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const devMode = process.env.npm_lifecycle_event
 
 const postCss = {
+	autoprefixer: require('autoprefixer'),
+	cssvariables: require('postcss-css-variables'),
 	import: require('postcss-import'),
 	nested: require('postcss-nested'),
 }
@@ -44,7 +48,14 @@ module.exports = {
 						loader: 'postcss-loader',
 						options: {
 							ident: 'postcss',
-							plugins: () => [postCss.import(), postCss.nested()],
+							plugins: () => [
+								postCss.autoprefixer({
+									browsers: ['last 4 version'],
+								}),
+								postCss.import(),
+								postCss.nested(),
+								postCss.cssvariables(),
+							],
 						},
 					},
 				],
@@ -59,4 +70,19 @@ module.exports = {
 			filename: 'build.css',
 		}),
 	],
+
+	optimization: {
+		minimizer: [
+			new TerserPlugin({
+				cache: true,
+				parallel: true,
+				terserOptions: {
+					output: {
+						comments: false,
+					},
+				},
+			}),
+			new OptimizeCssAssetsPlugin(),
+		],
+	},
 }

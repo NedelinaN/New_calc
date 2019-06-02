@@ -3,6 +3,7 @@
 	align-items: center;
 	justify-content: flex-start;
 	flex-direction: column;
+	color: red;
 
 	.b-title2 {
 		text-align: left;
