@@ -1,4 +1,5 @@
-.b-description {
-    font-size: 18px;
+@import '../colors.css';
 
+.b-description {
+	color: var(--grey2);
 }

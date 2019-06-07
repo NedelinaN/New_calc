@@ -26,6 +26,7 @@ module.exports = {
 
 	resolve: {
 		alias: {
+			// '~images': path.resolve(__dirname, 'src/img/'),
 			'react-dom': '@hot-loader/react-dom',
 		},
 	},

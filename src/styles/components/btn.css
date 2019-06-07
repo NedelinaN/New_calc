@@ -1,0 +1,15 @@
+@import '../colors.css';
+
+.btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 45px;
+	padding: 0 30px;
+	text-transform: uppercase;
+	border: none;
+	outline: none;
+	font-weight: 500;
+	color: var(--white);
+	background-color: var(--red);
+}

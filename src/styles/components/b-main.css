@@ -1,8 +1,52 @@
+@import '../colors.css';
+
 .b-main {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	text-align: center;
-	background-color: red;
+	height: calc(100% - 140px);
+
+	&--intro {
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+	}
+
+	.b-intro {
+		max-width: 430px;
+
+		.b-logo {
+			margin-bottom: 25px;
+		}
+
+		.b-description {
+			font-size: 20px;
+			line-height: 30px;
+		}
+	}
+
+	.b-download {
+		position: relative;
+		max-width: 630px;
+		padding: 100px;
+
+		h1 {
+			margin-bottom: 20px;
+		}
+
+		.b-description {
+			margin-bottom: 35px;
+			line-height: 25px;
+			font-weight: 500;
+		}
+
+		.b-decor {
+			position: absolute;
+			top: -10vh;
+			right: -10vh;
+			bottom: -10vh;
+			left: -10vh;
+			max-height: none;
+			max-width: none;
+			margin: auto;
+			opacity: 0.5;
+		}
+	}
 }

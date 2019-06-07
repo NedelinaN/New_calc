@@ -12,13 +12,13 @@ body {
 }
 
 body {
-	font-family: 'Roboto', 'Aria;';
-	font-size: 16px;
+	font-family: 'Roboto', 'Arial';
+	font-size: 14px;
 	font-weight: 400;
 	margin: 0;
 	overflow-x: hidden;
-	color: var(--black);
-	background-color: green;
+	color: var(--grey1);
+	background-color: var(--black);
 }
 
 h1,
@@ -30,17 +30,8 @@ h4 {
 }
 
 h1 {
-	margin-bottom: 15px;
-	font-size: 28px;
-}
-
-h2 {
-	margin-bottom: 35px;
-	font-size: 20px;
-}
-
-h4 {
-	margin-bottom: 10px;
+	font-size: 38px;
+	color: var(--white);
 }
 
 img {
@@ -51,32 +42,4 @@ img {
 a {
 	text-decoration: none;
 	color: inherit;
-}
-
-ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-li {
-	font-size: 18px;
-	font-weight: 500;
-
-	&:not(:last-child) {
-		margin-bottom: 25px;
-	}
-
-	&::before {
-		content: attr(data-number);
-		margin-right: 10px;
-		font-weight: 400;
-		color: var(--grey);
-	}
-}
-
-button {
-	&[disabled] {
-		display: none;
-	}
 }
