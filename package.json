@@ -42,8 +42,8 @@
 		"xlsx": "^0.14.0"
 	},
 	"dependencies": {
+		"normalize.css": "^8.0.1",
 		"react-mathjax2": "0.0.2",
 		"stylelint-config-prettier": "^4.0.0"
-	},
-	"browserslist": "last 2 versions"
+	}
 }

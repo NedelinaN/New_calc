@@ -8,18 +8,7 @@ import { make_cols } from './components/helpers'
 import { calcData } from './components/calcData'
 
 const App = () => (
-	<div className="b-container">
-		<header className="b-header">
-			<div className="b-header__item">
-				<div className="b-header__item-label">Версия</div>
-				<div className="b-header__item-text">1.0.0</div>
-			</div>
-
-			<div className="b-header__item">
-				<div className="b-header__item-label">Разработчик</div>
-				<div className="b-header__item-text">Неделина Анастасия</div>
-			</div>
-		</header>
+	<div className="b-container b-container--intro">
 		<main className="b-main b-main--intro">
 			<div className="b-intro">
 				<div className="b-name">
@@ -41,6 +30,17 @@ const App = () => (
 				<button className="btn">загрузить</button>
 			</div>
 		</main>
+		<footer className="b-footer">
+			<div className="b-footer__item">
+				<div className="b-footer__item-label">Версия</div>
+				<div className="b-footer__item-text">1.0.0</div>
+			</div>
+
+			<div className="b-footer__item">
+				<div className="b-footer__item-label">Разработчик</div>
+				<div className="b-footer__item-text">Неделина Анастасия</div>
+			</div>
+		</footer>
 	</div>
 )
 

@@ -1,6 +1,7 @@
 @import '../colors.css';
 
 .btn {
+	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -9,7 +10,39 @@
 	text-transform: uppercase;
 	border: none;
 	outline: none;
+	z-index: 1;
 	font-weight: 500;
 	color: var(--white);
 	background-color: var(--red);
+	transition: 0.25s ease-in-out;
+
+	&:hover {
+		cursor: pointer;
+		color: var(--grey1);
+		transition: 0.25s ease-in-out;
+
+		&::before {
+			transform-origin: center top;
+			transform: scaleY(1);
+		}
+	}
+
+	&:active {
+		transform: scale(0.95);
+		transition: 0.25s ease-in-out;
+	}
+
+	&::before {
+		content: '';
+		z-index: -1;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: var(--grey4);
+		transform-origin: center bottom;
+		transform: scaleY(0);
+		transition: transform 0.25s ease-in-out;
+	}
 }

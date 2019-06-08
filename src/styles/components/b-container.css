@@ -3,6 +3,10 @@
 	width: 100%;
 	max-width: 1740px;
 	margin: auto;
-	margin-top: 35px;
 	padding: 0 60px;
+
+	&--intro {
+		display: flex;
+		flex-direction: column;
+	}
 }

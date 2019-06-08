@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 const path = require('path')
-const webpack = require('webpack')
 const TerserPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
@@ -63,10 +62,10 @@ module.exports = {
 							ident: 'postcss',
 							plugins: () => [
 								postCss.autoprefixer({
-									browsers: ['last 4 version'],
+									browsers: ['last 2 version'],
 								}),
 								postCss.import(),
-								postCss.normalize(),
+								postCss.normalize({ browsers: 'last 2 versions' }),
 								postCss.nested(),
 								postCss.cssvariables(),
 							],

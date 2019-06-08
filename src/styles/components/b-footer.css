@@ -1,9 +1,9 @@
 @import '../colors.css';
 
-.b-header {
+.b-footer {
 	display: flex;
 	justify-content: space-between;
-	height: 35px;
+	padding: 30px 0;
 
 	&__item-label {
 		margin-bottom: 5px;
