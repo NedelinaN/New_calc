@@ -1,0 +1,7 @@
+.b-dnd {
+	display: inline-block;
+
+	input {
+		display: none;
+	}
+}

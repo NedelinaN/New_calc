@@ -43,6 +43,7 @@
 	},
 	"dependencies": {
 		"normalize.css": "^8.0.1",
+		"ramda": "^0.26.1",
 		"react-mathjax2": "0.0.2",
 		"stylelint-config-prettier": "^4.0.0"
 	}
