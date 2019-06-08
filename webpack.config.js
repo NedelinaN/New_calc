@@ -10,6 +10,7 @@ const postCss = {
 	autoprefixer: require('autoprefixer'),
 	cssvariables: require('postcss-css-variables'),
 	import: require('postcss-import'),
+	normalize: require('postcss-normalize'),
 	nested: require('postcss-nested'),
 }
 
@@ -65,6 +66,7 @@ module.exports = {
 									browsers: ['last 4 version'],
 								}),
 								postCss.import(),
+								postCss.normalize(),
 								postCss.nested(),
 								postCss.cssvariables(),
 							],
