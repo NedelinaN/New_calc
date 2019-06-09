@@ -1,0 +1,23 @@
+@import '../colors.css';
+
+.b-side-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: 0 0 50%;
+	border: none;
+	background-color: var(--grey4);
+
+	&__inner {
+		display: block;
+		font-size: 16px;
+		font-weight: 500;
+		text-transform: uppercase;
+		writing-mode: vertical-rl;
+		transform: rotate(180deg);
+
+		img {
+			margin-top: 5px;
+		}
+	}
+}

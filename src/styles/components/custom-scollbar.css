@@ -1,0 +1,12 @@
+@import '../colors.css';
+
+.custom-scrollbar {
+	.ScrollbarsCustom-Track {
+		width: 7px !important;
+		background-color: var(--grey4);
+	}
+
+	.ScrollbarsCustom-Thumb {
+		background-color: var(--grey3);
+	}
+}

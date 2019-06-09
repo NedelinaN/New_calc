@@ -1,6 +1,8 @@
 @import '../colors';
 
 .b-table {
+	padding-right: 15px;
+
 	&__header {
 		display: flex;
 		align-items: center;

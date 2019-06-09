@@ -4,6 +4,7 @@ import H1 from '~ui/H1.jsx'
 import SideTitle from '~ui/SideTitle.jsx'
 import SideButton from '~ui/SideButton.jsx'
 import Logo from '~ui/Logo.jsx'
+import ScrollContainer from '~ui/ScrollContainer.jsx'
 
 import { capData } from './capData.jsx'
 
@@ -58,13 +59,15 @@ const SecondScreen = ({ firstScreenData }) => {
 					<section className="b-results__item">
 						<div className="b-results__item-sidebar">
 							<SideTitle text="входные данные" />
-							<SideButton text="перейти к расчетам" />
+							<SideButton text="перейти к расчетам" icon="arrow_next" />
 						</div>
 						<div className="b-results__item-content">
-							<div className="b-table">
-								<div className="b-table__header">{createTableHeader()}</div>
-								<div className="b-table__body">{createTableBody()}</div>
-							</div>
+							<ScrollContainer>
+								<div className="b-table">
+									<div className="b-table__header">{createTableHeader()}</div>
+									<div className="b-table__body">{createTableBody()}</div>
+								</div>
+							</ScrollContainer>
 						</div>
 					</section>
 					<section className="b-results__item b-results__item--right">
