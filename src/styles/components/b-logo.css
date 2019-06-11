@@ -1,0 +1,5 @@
+.b-logo {
+	&--small {
+		height: 20px;
+	}
+}

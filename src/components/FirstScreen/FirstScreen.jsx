@@ -3,8 +3,8 @@ import * as R from 'ramda'
 import XLSX from 'xlsx'
 import DragDropFile from './DragDropFile.jsx'
 import { make_cols } from './helpers'
-import H1 from '../ui/H1.jsx'
-import Logo from '../ui/Logo.jsx'
+import H1 from '~ui/H1.jsx'
+import Logo from '~ui/Logo.jsx'
 // import OutTable from './components/OutTable.jsx'
 
 // import { calcData } from './components/calcData'
@@ -33,6 +33,7 @@ const FirstScreen = ({ setDataFirstScreen }) => {
 				pSumm: el[7],
 				kI: el[8],
 				cos: el[9],
+				tg: '123',
 			})
 			const formattedData = R.map(formattedValue, data)
 			setDataFirstScreen(formattedData)

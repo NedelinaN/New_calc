@@ -6,7 +6,7 @@ import SecondScreen from './components/SecondScreen/SecondScreen.jsx'
 const App = () => {
 	const [firstScreenData, setDataFirstScreen] = useState(null)
 
-	if (!firstScreenData) return <FirstScreen setDataFirstScreen={setDataFirstScreen} />
+	if (firstScreenData) return <FirstScreen setDataFirstScreen={setDataFirstScreen} />
 
 	return <SecondScreen firstScreenData={firstScreenData} />
 }

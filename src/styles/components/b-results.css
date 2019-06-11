@@ -1,3 +1,26 @@
+@import '../colors.css';
+
 .b-results {
-    width: 100%;
+	&__item {
+		display: flex;
+		height: 785px;
+		margin-bottom: 60px;
+		background-color: var(--white);
+	}
+
+	&__item-sidebar {
+		display: flex;
+		flex-direction: column;
+		width: 100px;
+
+		.b-side-title {
+			flex: 0 0 50%;
+		}
+	}
+
+	&__item-content {
+		width: 100%;
+		padding: 20px 30px;
+		padding-right: 10px;
+	}
 }

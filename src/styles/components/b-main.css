@@ -1,7 +1,9 @@
 @import '../colors.css';
 
 .b-main {
-	/* height: calc(100% - 140px); */
+	h1 {
+		margin-bottom: 30px;
+	}
 
 	&--intro {
 		display: flex;
@@ -29,10 +31,6 @@
 		position: relative;
 		max-width: 630px;
 		padding: 100px;
-
-		h1 {
-			margin-bottom: 20px;
-		}
 
 		.b-description {
 			margin-bottom: 35px;
