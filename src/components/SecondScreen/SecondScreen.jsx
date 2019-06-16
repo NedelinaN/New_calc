@@ -5,8 +5,7 @@ import SideTitle from '~ui/SideTitle.jsx'
 import SideButton from '~ui/SideButton.jsx'
 import Logo from '~ui/Logo.jsx'
 import ScrollContainer from '~ui/ScrollContainer.jsx'
-import outputObj from '~components/coefStandarts'
-
+import EffectElectroCount from './EffectElectroCount.jsx'
 import { capData } from './capData.jsx'
 
 const tableHeader = ['№', 'Наименование', 'Кол-во', 'Uном(кВ)', 'Pном(кВт)', 'ПВ(%)', 'Pном(100% ПВ)', 'Pсум(кВт)', 'Kи', 'cosφ', 'tgφ']
@@ -25,7 +24,6 @@ const cellClasses = [
 ]
 
 const SecondScreen = ({ firstScreenData }) => {
-	console.log('outputObj', outputObj)
 	const createTableHeader = () =>
 		tableHeader.map((el, i) => (
 			<div key={i} className={`b-table__cell ${cellClasses[i]}`}>
@@ -34,7 +32,7 @@ const SecondScreen = ({ firstScreenData }) => {
 		))
 
 	const createTableBody = () =>
-		capData.map((el, i) => (
+		firstScreenData.map((el, i) => (
 			<div key={i} className="b-table__line">
 				<div className={`b-table__cell ${cellClasses[0]}`}>{i + 1}</div>
 				<div className={`b-table__cell ${cellClasses[1]}`}>{el.name}</div>
@@ -61,7 +59,7 @@ const SecondScreen = ({ firstScreenData }) => {
 					<section className="b-results__item">
 						<div className="b-results__item-sidebar">
 							<SideTitle text="входные данные" />
-							<SideButton text="перейти к расчетам" icon="arrow_next" />
+							<SideButton text="перейти к расчетам" icon="arrow_next" link anchorId="results" />
 						</div>
 						<div className="b-results__item-content">
 							<ScrollContainer>
@@ -72,9 +70,16 @@ const SecondScreen = ({ firstScreenData }) => {
 							</ScrollContainer>
 						</div>
 					</section>
-					<section className="b-results__item b-results__item--right">
-						<div className="b-results__item-content" />
-						<div className="b-results__item-sidebar" />
+					<section id="results" className="b-results__item b-results__item--right">
+						<div className="b-results__item-content">
+							<div className="b-formulas">
+								<EffectElectroCount data={firstScreenData} />
+							</div>
+						</div>
+						<div className="b-results__item-sidebar">
+							<SideTitle text="входные данные" />
+							<SideButton text="перейти к расчетам" icon="arrow_next" link anchorId="results" />
+						</div>
 					</section>
 				</div>
 			</main>

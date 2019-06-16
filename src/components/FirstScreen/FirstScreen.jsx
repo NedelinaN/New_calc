@@ -26,16 +26,17 @@ const FirstScreen = ({ setDataFirstScreen }) => {
 			/* Update state */
 			const formattedValue = el => ({
 				name: el[1],
-				count: el[2],
-				uHom: el[3],
-				pHom: el[4],
-				pv: el[5],
-				pHom_pv: el[6],
-				pSumm: el[7],
-				kI: el[8],
-				cos: el[9],
-				tg: '123',
+				count: R.replace(/,/g, '.', el[2].toString()),
+				uHom: R.replace(/,/g, '.', el[3].toString()),
+				pHom: R.replace(/,/g, '.', el[4].toString()),
+				pv: R.replace(/,/g, '.', el[5].toString()),
+				pHom_pv: R.replace(/,/g, '.', el[6].toString()),
+				pSumm: R.replace(/,/g, '.', el[7].toString()),
+				kI: R.replace(/,/g, '.', el[8].toString()),
+				cos: R.replace(/,/g, '.', el[9].toString()),
+				tg: R.replace(/,/g, '.', '123'.toString()),
 			})
+
 			const formattedData = R.map(formattedValue, data)
 			const checkValuesArr = ['count', 'uHom', 'pHom', 'pv', 'pHom_pv', 'pSumm', 'kI', 'cos', 'tg']
 			const formattingObj = obj => R.props(checkValuesArr, obj)
@@ -55,7 +56,11 @@ const FirstScreen = ({ setDataFirstScreen }) => {
 
 			const finalChecking = R.includes(true, formattedDataForChecking)
 
-			if (finalChecking) setValidateError(true)
+			if (finalChecking) {
+				setValidateError(true)
+			} else {
+				setDataFirstScreen(formattedData)
+			}
 		}
 
 		if (rABS) reader.readAsBinaryString(file)
