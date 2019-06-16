@@ -5,6 +5,7 @@ import SideTitle from '~ui/SideTitle.jsx'
 import SideButton from '~ui/SideButton.jsx'
 import Logo from '~ui/Logo.jsx'
 import ScrollContainer from '~ui/ScrollContainer.jsx'
+import outputObj from '~components/coefStandarts'
 
 import { capData } from './capData.jsx'
 
@@ -24,6 +25,7 @@ const cellClasses = [
 ]
 
 const SecondScreen = ({ firstScreenData }) => {
+	console.log('outputObj', outputObj)
 	const createTableHeader = () =>
 		tableHeader.map((el, i) => (
 			<div key={i} className={`b-table__cell ${cellClasses[i]}`}>
