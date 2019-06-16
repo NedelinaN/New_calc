@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as R from 'ramda'
 import XLSX from 'xlsx'
 import DragDropFile from './DragDropFile.jsx'
 import { make_cols } from './helpers'
 import H1 from '~ui/H1.jsx'
 import Logo from '~ui/Logo.jsx'
-// import OutTable from './components/OutTable.jsx'
 
-// import { calcData } from './components/calcData'
+const vaildateRegExp = /\d*\.?\,?\d*$/g
 
 const FirstScreen = ({ setDataFirstScreen }) => {
+	const [validateError, setValidateError] = useState(false)
+
 	function handleFile(file) {
 		const reader = new FileReader()
 		const rABS = !!reader.readAsBinaryString
@@ -36,8 +37,27 @@ const FirstScreen = ({ setDataFirstScreen }) => {
 				tg: '123',
 			})
 			const formattedData = R.map(formattedValue, data)
-			setDataFirstScreen(formattedData)
+			const checkValuesArr = ['count', 'uHom', 'pHom', 'pv', 'pHom_pv', 'pSumm', 'kI', 'cos', 'tg']
+			const formattingObj = obj => R.props(checkValuesArr, obj)
+
+			const checkingValues = arr => {
+				const testValue = elArr => {
+					// console.log(elArr.toString(), R.test(vaildateRegExp, elArr.toString()))
+					return R.test(vaildateRegExp, elArr.toString())
+				}
+				return R.includes(false, R.map(testValue, arr))
+			}
+
+			const formattedDataForChecking = R.pipe(
+				R.map,
+				R.map(checkingValues)
+			)(formattingObj, formattedData)
+
+			const finalChecking = R.includes(true, formattedDataForChecking)
+
+			if (finalChecking) setValidateError(true)
 		}
+
 		if (rABS) reader.readAsBinaryString(file)
 		else reader.readAsArrayBuffer(file)
 	}
@@ -61,6 +81,7 @@ const FirstScreen = ({ setDataFirstScreen }) => {
 						Для выполнения расчетов, пожалуйста загрузите таблицу в следующих форматах: XLSX/XLSM, XML, XLS/XLW.
 					</div>
 					<DragDropFile text="загрузить" handleFile={handleFile} />
+					{validateError ? <div>Валидация не пройдена</div> : null}
 				</div>
 			</main>
 			<footer className="b-footer">
@@ -79,89 +100,3 @@ const FirstScreen = ({ setDataFirstScreen }) => {
 }
 
 export default FirstScreen
-
-// const [state, setState] = useState({
-// 	data: [] /* Array of Arrays e.g. [["a","b"],[1,2]] */,
-// 	cols: [] /* Array of column objects e.g. { name: "C", K: 2 } */,
-// })
-
-// function handleFile(file) {
-// 	const reader = new FileReader()
-// 	const rABS = !!reader.readAsBinaryString
-// 	reader.onload = e => {
-// 		/* Parse data */
-// 		const bstr = e.target.result
-// 		const wb = XLSX.read(bstr, { type: rABS ? 'binary' : 'array' })
-// 		/* Get first worksheet */
-// 		const wsname = wb.SheetNames[0]
-// 		const ws = wb.Sheets[wsname]
-// 		/* Convert array of arrays */
-// 		const data = XLSX.utils.sheet_to_json(ws, { header: 1 })
-// 		/* Update state */
-// 		setState({ data: data, cols: make_cols(ws['!ref']) })
-// 	}
-// 	if (rABS) reader.readAsBinaryString(file)
-// 	else reader.readAsArrayBuffer(file)
-// }
-
-// function exportFile() {
-// 	/* convert state to workbook */
-// 	const ws = XLSX.utils.aoa_to_sheet(state.data)
-// 	const wb = XLSX.utils.book_new()
-// 	XLSX.utils.book_append_sheet(wb, ws, 'SheetJS')
-// 	/* generate XLSX file and send to client */
-// 	XLSX.writeFile(wb, 'result.xlsx')
-// }
-
-// function buildChildItems(elParent) {
-// 	const childItems = []
-
-// 	elParent.forEach((elChild, index) => {
-// 		childItems.push(
-// 			<div className="b-calc__item-line" key={index}>
-// 				<div className="b-calc__item-prop">{elChild.prop}</div>
-// 				<div className="b-calc__item-value">{elChild.value}</div>
-// 			</div>
-// 		)
-// 	})
-
-// 	return childItems
-// }
-
-// function buildParentItems() {
-// 	const parentItems = []
-
-// 	calcData.forEach((elParent, index) => {
-// 		parentItems.push(
-// 			<div className="b-calc__item" key={index}>
-// 				{buildChildItems(elParent)}
-// 			</div>
-// 		)
-// 	})
-
-// 	return parentItems
-// }
-
-// return (
-// 	<>
-// 		<div className="b-main">
-// 			<div className="b-title">
-// 				<h1 className="title">Автоматизированный расчёт нагрузки системы электроснабжения</h1>
-// 				<div className="b-description">Здесь будет описание</div>
-// 			</div>
-// 			<DragDropFile handleFile={handleFile}>
-// 				<DataInput handleFile={handleFile} />
-// 				<OutTable data={state.data} cols={state.cols} />
-// 				<button disabled={!state.data.length} className="b-download__btn btn" onClick={exportFile}>
-// 					Скачать
-// 				</button>
-// 			</DragDropFile>
-// 			<div className="b-results">
-// 				<div className="b-calc">
-// 					<h2 className="b-title2">Результаты расчётов: </h2>
-// 					<div className="b-calc__items">{buildParentItems()}</div>
-// 				</div>
-// 			</div>
-// 		</div>
-// 	</>
-// )
