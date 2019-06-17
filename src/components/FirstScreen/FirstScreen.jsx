@@ -86,7 +86,12 @@ const FirstScreen = ({ setDataFirstScreen }) => {
 						Для выполнения расчетов, пожалуйста загрузите таблицу в следующих форматах: XLSX/XLSM, XML, XLS/XLW.
 					</div>
 					<DragDropFile text="загрузить" handleFile={handleFile} />
-					{validateError ? <div>Валидация не пройдена</div> : null}
+					{validateError ? (
+						<div>
+							Исходные данные содержат недопустимые символы для расчетных единиц. Данные для расчетных единиц могут содержать цифры, точки,
+							запятые
+						</div>
+					) : null}
 				</div>
 			</main>
 			<footer className="b-footer">

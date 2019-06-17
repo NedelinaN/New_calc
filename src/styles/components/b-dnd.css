@@ -1,7 +1,21 @@
+@import '../colors.css';
+
 .b-dnd {
 	display: inline-block;
+	max-width: 200px;
+	word-break: break-all;
+	line-height: 20px;
+
+	&__download {
+		margin-bottom: 10px;
+	}
 
 	input {
 		display: none;
+	}
+
+	.b-hint {
+		font-size: 12px;
+		color: var(--grey3);
 	}
 }
