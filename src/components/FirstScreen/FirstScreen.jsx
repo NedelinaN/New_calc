@@ -6,7 +6,7 @@ import { make_cols } from './helpers'
 import H1 from '~ui/H1.jsx'
 import Logo from '~ui/Logo.jsx'
 
-const vaildateRegExp = /\d*\.?\,?\d*$/g
+const vaildateRegExp = /^[0-9]*\.?[0-9]*$/g
 
 const FirstScreen = ({ setDataFirstScreen }) => {
 	const [validateError, setValidateError] = useState(false)
@@ -43,7 +43,6 @@ const FirstScreen = ({ setDataFirstScreen }) => {
 
 			const checkingValues = arr => {
 				const testValue = elArr => {
-					// console.log(elArr.toString(), R.test(vaildateRegExp, elArr.toString()))
 					return R.test(vaildateRegExp, elArr.toString())
 				}
 				return R.includes(false, R.map(testValue, arr))
@@ -85,13 +84,16 @@ const FirstScreen = ({ setDataFirstScreen }) => {
 						<br />
 						Для выполнения расчетов, пожалуйста загрузите таблицу в следующих форматах: XLSX/XLSM, XML, XLS/XLW.
 					</div>
-					<DragDropFile text="загрузить" handleFile={handleFile} />
-					{validateError ? (
-						<div>
-							Исходные данные содержат недопустимые символы для расчетных единиц. Данные для расчетных единиц могут содержать цифры, точки,
-							запятые
-						</div>
-					) : null}
+					<div className="b-download__activity">
+						<DragDropFile text="загрузить" handleFile={handleFile} />
+						{validateError ? (
+							<div className="b-error">
+								Исходные данные содержат недопустимые символы для расчетных единиц.
+								<br />
+								Данные для расчетных единиц могут содержать цифры, точки, запятые
+							</div>
+						) : null}
+					</div>
 				</div>
 			</main>
 			<footer className="b-footer">

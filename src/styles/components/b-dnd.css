@@ -2,9 +2,10 @@
 
 .b-dnd {
 	display: inline-block;
+	flex: 0 0 auto;
 	max-width: 200px;
+	margin-right: 30px;
 	word-break: break-all;
-	line-height: 20px;
 
 	&__download {
 		margin-bottom: 10px;
@@ -16,6 +17,7 @@
 
 	.b-hint {
 		font-size: 12px;
+		line-height: 18px;
 		color: var(--grey3);
 	}
 }

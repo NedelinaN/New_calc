@@ -32,6 +32,10 @@
 		max-width: 630px;
 		padding: 100px;
 
+		&__activity {
+			display: flex;
+		}
+
 		.b-description {
 			margin-bottom: 35px;
 			line-height: 25px;
@@ -48,6 +52,12 @@
 			max-width: none;
 			margin: auto;
 			opacity: 0.7;
+		}
+
+		.b-error {
+			font-size: 12px;
+			line-height: 18px;
+			color: var(--red2);
 		}
 	}
 }
