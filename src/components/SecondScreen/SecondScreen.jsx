@@ -5,7 +5,7 @@ import SideTitle from '~ui/SideTitle.jsx'
 import SideButton from '~ui/SideButton.jsx'
 import Logo from '~ui/Logo.jsx'
 import ScrollContainer from '~ui/ScrollContainer.jsx'
-import EffectElectroCount from './EffectElectroCount.jsx'
+import Calculating from '~components/Calculating/Calculating.jsx'
 import { capData } from './capData.jsx'
 
 const tableHeader = ['№', 'Наименование', 'Кол-во', 'Uном(кВ)', 'Pном(кВт)', 'ПВ(%)', 'Pном(100% ПВ)', 'Pсум(кВт)', 'Kи', 'cosφ', 'tgφ']
@@ -72,9 +72,7 @@ const SecondScreen = ({ firstScreenData }) => {
 					</section>
 					<section id="results" className="b-results__item b-results__item--right">
 						<div className="b-results__item-content">
-							<div className="b-formulas">
-								<EffectElectroCount data={firstScreenData} />
-							</div>
+							<Calculating data={firstScreenData} />
 						</div>
 						<div className="b-results__item-sidebar">
 							<SideTitle text="входные данные" />
