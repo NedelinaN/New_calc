@@ -51,7 +51,6 @@ const SecondScreen = ({ firstScreenData }) => {
 		<div className="b-container">
 			<header className="b-header">
 				<Logo className="b-logo--small" />
-				{/* <img src="./src/img/formules/effect_count_electro.png" alt="" /> */}
 			</header>
 			<main className="b-main b-main--calculations">
 				<H1 text="Результаты расчетов" />

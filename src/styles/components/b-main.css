@@ -1,4 +1,5 @@
 @import '../colors.css';
+@import '../media.css';
 
 .b-main {
 	h1 {
@@ -19,11 +20,21 @@
 
 		.b-logo {
 			margin-bottom: 25px;
+
+			@media (--max1440) {
+				height: 35px;
+				margin-bottom: 20px;
+			}
 		}
 
 		.b-description {
 			font-size: 20px;
 			line-height: 30px;
+
+			@media (--max1440) {
+				font-size: 16px;
+				line-height: 26px;
+			}
 		}
 	}
 
@@ -44,10 +55,11 @@
 
 		.b-decor {
 			position: absolute;
-			top: -10vh;
-			right: -10vh;
-			bottom: -10vh;
+			top: 0;
+			right: 0;
+			bottom: 0;
 			left: -10vh;
+			height: 70vh;
 			max-height: none;
 			max-width: none;
 			margin: auto;
