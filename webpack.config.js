@@ -11,6 +11,7 @@ const postCss = {
 	import: require('postcss-import'),
 	normalize: require('postcss-normalize'),
 	nested: require('postcss-nested'),
+	customMedia: require('postcss-custom-media'),
 }
 
 module.exports = {
@@ -69,6 +70,7 @@ module.exports = {
 								postCss.normalize({ browsers: 'last 2 versions' }),
 								postCss.nested(),
 								postCss.cssvariables(),
+								postCss.customMedia(),
 							],
 						},
 					},

@@ -1,7 +1,11 @@
 @import '../colors';
+@import '../media';
 
 .b-table {
 	padding-right: 15px;
+
+	@media (--max1600) {
+	}
 
 	&__header {
 		display: flex;

@@ -6,5 +6,6 @@ importAll(require.context('./components', true, /\.css$/))
 
 require('./general.css')
 require('./colors.css')
+require('./media.css')
 require('./fonts.css')
 // require("./helpers.css");
