@@ -24,41 +24,55 @@ const FirstScreen = ({ setDataFirstScreen }) => {
 			/* Convert array of arrays */
 			const data = R.drop(1, XLSX.utils.sheet_to_json(ws, { header: 1 }))
 			/* Update state */
-			const formattedValue = el => ({
-				name: el[1],
-				count: R.replace(/,/g, '.', el[2].toString()),
-				uHom: R.replace(/,/g, '.', el[3].toString()),
-				pHom: R.replace(/,/g, '.', el[4].toString()),
-				pv: R.replace(/,/g, '.', el[5].toString()),
-				pHom_pv: R.replace(/,/g, '.', el[6].toString()),
-				pSumm: R.replace(/,/g, '.', el[7].toString()),
-				kI: R.replace(/,/g, '.', el[8].toString()),
-				cos: R.replace(/,/g, '.', el[9].toString()),
-				tg: R.replace(/,/g, '.', '123'.toString()),
-			})
+			const formattedValue = el => {
+				for (let i = 1; i < 11; i++) {
+					let isEmptyEl = Boolean(el[i])
 
-			const formattedData = R.map(formattedValue, data)
-			const checkValuesArr = ['count', 'uHom', 'pHom', 'pv', 'pHom_pv', 'pSumm', 'kI', 'cos', 'tg']
-			const formattingObj = obj => R.props(checkValuesArr, obj)
-
-			const checkingValues = arr => {
-				const testValue = elArr => {
-					return R.test(vaildateRegExp, elArr.toString())
+					if (!isEmptyEl) {
+						setValidateError(true)
+						return null
+					}
 				}
-				return R.includes(false, R.map(testValue, arr))
+
+				return {
+					name: el[1],
+					count: R.replace(/,/g, '.', el[2].toString()),
+					uHom: R.replace(/,/g, '.', el[3].toString()),
+					pHom: R.replace(/,/g, '.', el[4].toString()),
+					pv: R.replace(/,/g, '.', el[5].toString()),
+					pHom_pv: R.replace(/,/g, '.', el[6].toString()),
+					pSumm: R.replace(/,/g, '.', el[7].toString()),
+					kI: R.replace(/,/g, '.', el[8].toString()),
+					cos: R.replace(/,/g, '.', el[9].toString()),
+					tg: R.replace(/,/g, '.', el[10].toString()),
+				}
 			}
 
-			const formattedDataForChecking = R.pipe(
-				R.map,
-				R.map(checkingValues)
-			)(formattingObj, formattedData)
+			const formattedData = R.map(formattedValue, data)
 
-			const finalChecking = R.includes(true, formattedDataForChecking)
+			if (!R.includes(null, formattedData)) {
+				const checkValuesArr = ['count', 'uHom', 'pHom', 'pv', 'pHom_pv', 'pSumm', 'kI', 'cos', 'tg']
+				const formattingObj = obj => R.props(checkValuesArr, obj)
 
-			if (finalChecking) {
-				setValidateError(true)
-			} else {
-				setDataFirstScreen(formattedData)
+				const checkingValues = arr => {
+					const testValue = elArr => {
+						return R.test(vaildateRegExp, elArr.toString())
+					}
+					return R.includes(false, R.map(testValue, arr))
+				}
+
+				const formattedDataForChecking = R.pipe(
+					R.map,
+					R.map(checkingValues)
+				)(formattingObj, formattedData)
+
+				const finalChecking = R.includes(true, formattedDataForChecking)
+
+				if (finalChecking) {
+					setValidateError(true)
+				} else {
+					setDataFirstScreen(formattedData)
+				}
 			}
 		}
 
