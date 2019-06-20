@@ -98,8 +98,9 @@ const SecondScreen = ({ firstScreenData }) => {
 							<Calculating data={firstScreenData} />
 						</div>
 						<div className="b-results__item-sidebar">
-							<SideTitle text="входные данные" />
-							<SideButton text="перейти к расчетам" icon="arrow_next" link anchorId="results" />
+							<SideTitle inverse text="итоговые расчеты" />
+							<SideButton inverse text="сохранить расчеты" icon="arrow_next" link anchorId="results" />
+							<SideButton inverse text="вернуться на главную" icon="arrow_next" link anchorId="results" />
 						</div>
 					</section>
 				</div>
