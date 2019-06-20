@@ -3,6 +3,8 @@ import * as R from 'ramda'
 import ResultItem from './ResultItem.jsx'
 
 const Calculating = ({ data }) => {
+	console.log('render calculator')
+	// Эффективное число электроприемников
 	const effectElectroCount = () => {
 		// Получаем массив количества электроприемников приобразованных в числовые значения
 		const getCounters = obj => +obj.count
@@ -32,48 +34,49 @@ const Calculating = ({ data }) => {
 		return (pSumResult / multiplePHomPVWithCounters).toFixed(0)
 	}
 
-	const ussingKoef = () => {
+	// Средне-взвешенный коэффицент использования
+	const ussingCoef = () => {
 		// Получаем массив коэффициентов использования kи каждого электроприемника
-		const getKoefUsing = obj => +obj.kI
-		const koefUsing = R.map(getKoefUsing, data)
+		const getCoefUsing = obj => +obj.kI
+		const coefUsing = R.map(getCoefUsing, data)
 
 		// Получаем массив номинальной мощности Pном, 100% ПВ каждого электроприемника
 		const getPhom = obj => +obj.pHom_pv
 		const phom = R.map(getPhom, data)
 
 		// Получаем массив суммы произведений Pном, 100% ПВ и коэффициентов использования kи
-		const pHomkIMultiply = (el, i) => el * koefUsing[i]
-		const mapIndexed = R.addIndex(R.map)
+		const pHomkIMultiply = (x, y) => x * y
 		const multiplyPHomWithKi = R.pipe(
-			mapIndexed,
+			R.zipWith,
 			R.sum
-		)((el, i) => pHomkIMultiply(el, i), phom)
-
+		)(pHomkIMultiply, coefUsing, phom)
 		// Получаем сумму Pном, 100% ПВ
 		const phomSum = R.sum(phom)
 
 		//Получем средневзевешенный коэфф. использования Kи
-		return (multiplyPHomWithKi / phomSum)
+		return +(multiplyPHomWithKi / phomSum / 5).toFixed(2) * 5
 	}
 
-	// const koefPower = коэффициент расчетной нагрузки по таблице
+	console.log('ussingCoef()', ussingCoef())
+
+	// const coefPower = коэффициент расчетной нагрузки по таблице
 
 	/* const activePower = (K) => {
 
 		// Получаем массив коэффициентов использования kи каждого электроприемника
-		const getKoefUsing = obj => +obj.kI
-		const usingKoef = R.map(getKoefUsing, data)
+		const getCoefUsing = obj => +obj.kI
+		const usingCoef = R.map(getCoefUsing, data)
 
 		// Получаем массив Pсум
 		const getPsum = obj => +obj.pSumm
-		const pSum = R.map(getKoefReactPow, data)
+		const pSum = R.map(getCoefReactPow, data)
 
 		//Получаем массив суммы произведений kи и Pсум
 		const pSumkIMultiply = R.pipe(
 			R.zipWith,
 			R.sum
 		)
-		(R.multiply, usingKoef, pSum) 
+		(R.multiply, usingCoef, pSum) 
 
 		//Получаем активную мощность Pр
 		return (pSumkIMultiply / K )
@@ -81,42 +84,36 @@ const Calculating = ({ data }) => {
 
 	const reactivePower = () => {
 		// Получаем массив коэффициентов использования kи каждого электроприемника
-		const getKoefUsing = obj => +obj.kI
-		const koefUsing = R.map(getKoefUsing, data)
+		const getCoefUsing = obj => +obj.kI
+		const coefUsing = R.map(getCoefUsing, data)
 
 		// Получаем массив Pсум
 		const getPsum = obj => +obj.pSumm
-		const pSum = R.map(getKoefReactPow, data)
+		const pSum = R.map(getCoefReactPow, data)
 
 		// Получаем массив коэффициентов реактивной мощности tgф каждого электроприемника
-		const getKoefReactPow = obj => +obj.tg
-		const ReactPowKoef = R.map(getKoefReactPow, data)				
+		const getCoefReactPow = obj => +obj.tg
+		const ReactPowCoef = R.map(getCoefReactPow, data)
 
 		//Получаем массив произведений kи и Pсум
-		const kIPsumMultiply = R.zipWith(R.multiply, koefUsing, pSum) 
+		const kIPsumMultiply = R.zipWith(R.multiply, coefUsing, pSum)
 
 		//Получаем массив суммы произведений kи, Pсум и tg ф
 		const kIPsumTgMultiply = R.pipe(
 			R.zipWith,
 			R.sum
-		)
-		(R.multiply, kIPsumMultiply, ReactPowKoef) 
+		)(R.multiply, kIPsumMultiply, ReactPowCoef)
 
 		//	Получаем реактивную мощность Qр
-		return (1.1 * kIPsumTgMultiply)			
-		}
-
-		const fullPower = () => {
-			
-		}
-
-			
+		return 1.1 * kIPsumTgMultiply
 	}
+
+	const fullPower = () => {}
 
 	return (
 		<div className="b-formulas">
 			<ResultItem title="Эффективное число электроприемников" count={effectElectroCount()} unit="шт" img="effect_count_electro" />
-			<ResultItem title="Активная мощность" count={activePower()} unit="кВт" img="result_active_power" />
+			{/* <ResultItem title="Активная мощность" count={activePower()} unit="кВт" img="result_active_power" /> */}
 		</div>
 	)
 }
