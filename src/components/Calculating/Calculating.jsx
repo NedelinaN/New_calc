@@ -54,7 +54,13 @@ const Calculating = ({ data }) => {
 		const phomSum = R.sum(phom)
 
 		//Получем средневзевешенный коэфф. использования Kи
-		return +(multiplyPHomWithKi / phomSum / 5).toFixed(2) * 5
+		const multiplyPHomWithKi_divide_phomSum = multiplyPHomWithKi / phomSum
+
+		if (multiplyPHomWithKi_divide_phomSum >= 0.1 && multiplyPHomWithKi_divide_phomSum <= 0.2) {
+			return +(multiplyPHomWithKi_divide_phomSum / 5).toFixed(2) * 5
+		}
+
+		return multiplyPHomWithKi_divide_phomSum.toFixed(1)
 	}
 
 	console.log('ussingCoef()', ussingCoef())
