@@ -8,7 +8,31 @@ import ScrollContainer from '~ui/ScrollContainer.jsx'
 import Calculating from '~components/Calculating/Calculating.jsx'
 import { capData } from './capData.jsx'
 
-const tableHeader = ['№', 'Наименование', 'Кол-во', 'Uном(кВ)', 'Pном(кВт)', 'ПВ(%)', 'Pном(100% ПВ)', 'Pсум(кВт)', 'Kи', 'cosφ', 'tgφ']
+const tableHeader = [
+	'№',
+	'Наименование',
+	'Кол-во',
+	<span className="b-complex">
+		<span className="b-complex__item">Uном</span>
+		<span className="b-complex__item">(кВ)</span>
+	</span>,
+	<span className="b-complex">
+		<span className="b-complex__item">Pном</span>
+		<span className="b-complex__item">(кВт)</span>
+	</span>,
+	'ПВ(%)',
+	<span className="b-complex">
+		<span className="b-complex__item">Pном</span>
+		<span className="b-complex__item">(100% ПВ)</span>
+	</span>,
+	<span className="b-complex">
+		<span className="b-complex__item">Pсум</span>
+		<span className="b-complex__item">(кВт)</span>
+	</span>,
+	'Kи',
+	'cosφ',
+	'tgφ',
+]
 const cellClasses = [
 	'b-table__cell--number',
 	'b-table__cell--name',

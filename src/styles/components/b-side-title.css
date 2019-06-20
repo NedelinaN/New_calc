@@ -1,4 +1,5 @@
 @import '../colors.css';
+@import '../media.css';
 
 .b-side-title {
 	display: flex;
@@ -9,6 +10,10 @@
 	text-transform: uppercase;
 	color: var(--white);
 	background-color: var(--red);
+
+	@media (--max1600) {
+		font-size: 12px;
+	}
 
 	&__text {
 		display: block;

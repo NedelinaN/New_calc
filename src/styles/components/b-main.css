@@ -4,6 +4,10 @@
 .b-main {
 	h1 {
 		margin-bottom: 30px;
+
+		@media (--max1366) {
+			margin-bottom: 20px;
+		}
 	}
 
 	&--intro {
@@ -35,6 +39,11 @@
 				font-size: 16px;
 				line-height: 26px;
 			}
+
+			@media (--max1366) {
+				font-size: 14px;
+				line-height: 22px;
+			}
 		}
 	}
 
@@ -51,6 +60,12 @@
 			margin-bottom: 35px;
 			line-height: 25px;
 			font-weight: 500;
+
+			@media (--max1366) {
+				margin-bottom: 25px;
+				font-size: 12px;
+				line-height: 20px;
+			}
 		}
 
 		.b-decor {

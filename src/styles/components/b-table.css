@@ -4,15 +4,16 @@
 .b-table {
 	padding-right: 15px;
 
-	@media (--max1600) {
-	}
-
 	&__header {
 		display: flex;
 		align-items: center;
 		font-size: 16px;
 		font-weight: 600;
 		color: var(--grey3);
+
+		@media (--max1600) {
+			font-size: 14px;
+		}
 	}
 
 	&__body {
@@ -56,6 +57,14 @@
 		&--cos,
 		&--tg {
 			width: 9.2%;
+		}
+	}
+
+	.b-complex {
+		&__item {
+			@media (--max1600) {
+				display: block;
+			}
 		}
 	}
 }

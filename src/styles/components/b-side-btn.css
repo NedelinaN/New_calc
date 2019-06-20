@@ -1,4 +1,5 @@
 @import '../colors.css';
+@import '../media.css';
 
 .b-side-btn {
 	display: flex;
@@ -16,8 +17,16 @@
 		writing-mode: vertical-rl;
 		transform: rotate(180deg);
 
+		@media (--max1600) {
+			font-size: 12px;
+		}
+
 		img {
-			margin-top: 5px;
+			margin-bottom: 5px;
+
+			@media (--max1600) {
+				width: 10px;
+			}
 		}
 	}
 }
