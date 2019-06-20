@@ -1,3 +1,9 @@
+@import '../media.css';
+
 .b-header {
 	padding: 30px 0 60px;
+
+	@media (--max1366) {
+		padding: 30px 0 40px;
+	}
 }
