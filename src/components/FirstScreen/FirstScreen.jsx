@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import * as R from 'ramda'
 import XLSX from 'xlsx'
 import DragDropFile from './DragDropFile.jsx'
-import { make_cols } from './helpers'
 import H1 from '~ui/H1.jsx'
 import Logo from '~ui/Logo.jsx'
 

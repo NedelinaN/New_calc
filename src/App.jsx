@@ -8,7 +8,7 @@ const App = () => {
 
 	if (!firstScreenData) return <FirstScreen setDataFirstScreen={setDataFirstScreen} />
 
-	return <SecondScreen firstScreenData={firstScreenData} />
+	return <SecondScreen firstScreenData={firstScreenData} setDataFirstScreen={setDataFirstScreen} />
 }
 
 export default hot(App)

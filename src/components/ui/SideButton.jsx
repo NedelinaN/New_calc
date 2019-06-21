@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SideButton = ({ link, text, icon, anchorId, inverse }) =>
+const SideButton = ({ link, text, icon, anchorId, inverse, onClick }) =>
 	link ? (
 		<a href={`#${anchorId}`} className={`b-side-btn ${inverse && 'inverse'}`}>
 			<span className="b-side-btn__inner">
@@ -18,10 +18,19 @@ const SideButton = ({ link, text, icon, anchorId, inverse }) =>
 			</span>
 		</a>
 	) : (
-		<button className="b-side-btn">
+		<button className={`b-side-btn ${inverse && 'inverse'}`} onClick={onClick}>
 			<span className="b-side-btn__inner">
-				<img src={`./src/img/${icon}.svg`} alt="Иконка действия" />
-				<span>{text}</span>
+				{inverse ? (
+					<>
+						<span>{text}</span>
+						<img src={`./src/img/${icon}.svg`} alt="Иконка действия" />
+					</>
+				) : (
+					<>
+						<img src={`./src/img/${icon}.svg`} alt="Иконка действия" />
+						<span>{text}</span>
+					</>
+				)}
 			</span>
 		</button>
 	)

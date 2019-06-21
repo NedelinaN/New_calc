@@ -7,6 +7,7 @@
 	justify-content: center;
 	flex: 0 0 50%;
 	border: none;
+	cursor: pointer;
 	background-color: var(--grey4);
 
 	&.inverse {

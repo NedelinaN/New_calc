@@ -6,7 +6,6 @@ import SideButton from '~ui/SideButton.jsx'
 import Logo from '~ui/Logo.jsx'
 import ScrollContainer from '~ui/ScrollContainer.jsx'
 import Calculating from '~components/Calculating/Calculating.jsx'
-import { capData } from './capData.jsx'
 
 const tableHeader = [
 	'№',
@@ -40,7 +39,7 @@ const cellClasses = [
 	'b-table__cell--tg',
 ]
 
-const SecondScreen = ({ firstScreenData }) => {
+const SecondScreen = ({ firstScreenData, setDataFirstScreen }) => {
 	const createTableHeader = () =>
 		tableHeader.map((el, i) => (
 			<div key={i} className={`b-table__cell ${cellClasses[i]}`}>
@@ -91,7 +90,7 @@ const SecondScreen = ({ firstScreenData }) => {
 						<div className="b-results__item-sidebar">
 							<SideTitle inverse text="итоговые расчеты" />
 							<SideButton inverse text="сохранить расчеты" icon="arrow_next" link anchorId="results" />
-							<SideButton inverse text="вернуться на главную" icon="arrow_next" link anchorId="results" />
+							<SideButton inverse text="вернуться на главную" icon="arrow_next" anchorId="results" onClick={() => setDataFirstScreen(null)} />
 						</div>
 					</section>
 				</div>

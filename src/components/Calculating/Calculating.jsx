@@ -117,7 +117,7 @@ const Calculating = ({ data }) => {
 	}
 
 	//Полная мощность
-	const fullPower = () => +Math.sqrt(Math.pow(activePower(), 2) + Math.pow(reactivePower(), 2))
+	const fullPower = () => +Math.sqrt(Math.pow(activePower(), 2) + Math.pow(reactivePower(), 2)).toFixed(2)
 
 	//Расчетный ток
 	const current = () => {
@@ -132,7 +132,12 @@ const Calculating = ({ data }) => {
 		<div className="b-formulas">
 			<ResultItem title="Эффективное число электроприемников" count={effectElectroCount()} unit="шт" img="effect_count_electro" />
 			<ResultItem title="Активная мощность" count={activePower()} unit="кВт" img="result_active_power" />
-			<ResultItem title="Реактивная мощность" count={reactivePower()} unit="кВАр" img="result_reactive_power_nl10" />
+			<ResultItem
+				title="Реактивная мощность"
+				count={reactivePower()}
+				unit="кВАр"
+				img={effectElectroCount() <= 10 ? 'result_reactive_power_nl10' : 'result_reactive_power_nm10'}
+			/>
 			<ResultItem title="Полная мощность" count={fullPower()} unit="кВА" img="result_full_power" />
 			<ResultItem title="Расчетный ток" count={current()} unit="А" img="result_electro_power" />
 		</div>
