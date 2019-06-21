@@ -19,7 +19,33 @@
 		}
 
 		.b-table__cell {
+			position: relative;
 			padding-bottom: 22px;
+
+			&:hover {
+				&::after {
+					opacity: 1;
+					visibility: visible;
+					transition: ease 0.3s;
+				}
+			}
+
+			&::after {
+				content: attr(data-desc);
+				position: absolute;
+				left: 0;
+				bottom: 100%;
+				padding: 10px 15px;
+				font-size: 12px;
+				line-height: 16px;
+				font-weight: 400;
+				opacity: 0;
+				visibility: hidden;
+				transition: ease 0.3s;
+				box-shadow: 0 0 20px -5px rgba(0, 0, 0, 0.5);
+				color: var(--grey2);
+				background-color: var(--white);
+			}
 		}
 	}
 
