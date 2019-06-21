@@ -136,24 +136,11 @@ const Calculating = ({ data, outputCalculating, setOutputCalculating }) => {
 	const outputCurrent = current()
 
 	if (!outputCalculating) setOutputCalculating([outputEffectElectroCount, outputActivePower, outputReactivePower, outputFullPower, outputCurrent])
-
 	const paramsEffectElectroCount = ['Pn – суммарная номинальная мощность, кВт', 'n – количество электроприемников, шт', 'pn – номинальная мощность, кВт']
-
-	const paramsActivePower = [
-		'Kр - коэффициент расчетной нагрузки',
-		'Kи - средневзешенный коэффициент использования',
-		'Pn – суммарная номинальная мощность, кВт',
-	]
-
-	const paramsReactivePower = [
-		'Kи - средневзешенный коэффициент использования',
-		'Pn – суммарная номинальная мощность, кВт',
-		'tgφ - коэффициент реактивной нагрузки',
-	]
-
-	const paramsFullPower = ['Pр - активная мощность, кВт', 'Qр – реактивная мощность, кВАр']
-
-	const paramsCurrent = ['Sр - полная мощность, кВА', 'U - номинальное напряжение, кВ']
+	const paramsActivePower = ['Kр – коэффициент расчетной мощности', 'Kи – коэффициент использования', 'Pn – суммарная номинальная мощность, кВт']
+	const paramsReactivePower = ['Kи – коэффициент использования', 'Pn – суммарная номинальная мощность, кВт', 'tgφ – коэффициент реактивной нагрузки']
+	const paramsFullPower = ['Pр – активная мощность, кВт', 'Qр – реактивная мощность, кВАр']
+	const paramsCurrent = ['Sр – полная мощность, кВА', 'U – номинальное напряжение, кВ']
 
 	return (
 		<div className="b-formulas">
