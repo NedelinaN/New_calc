@@ -21,6 +21,6 @@ const createObj = (el, i) => ({
 })
 
 const mapIndexed = R.addIndex(R.map)
-const outputObj = mapIndexed((el, i) => createObj(el, i), ElectricReceiverArr)
+const coefStandarts = mapIndexed((el, i) => createObj(el, i), ElectricReceiverArr)
 
-export default outputObj
+export default coefStandarts

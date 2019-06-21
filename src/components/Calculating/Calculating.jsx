@@ -1,9 +1,9 @@
 import React from 'react'
 import * as R from 'ramda'
+import coefStandarts from '~components/coefStandarts'
 import ResultItem from './ResultItem.jsx'
 
 const Calculating = ({ data }) => {
-	console.log('render calculator')
 	// Эффективное число электроприемников
 	const effectElectroCount = () => {
 		// Получаем массив количества электроприемников приобразованных в числовые значения
@@ -35,7 +35,7 @@ const Calculating = ({ data }) => {
 	}
 
 	// Средневзвешенный коэффицент использования
-	const ussingCoef = () => {
+	const usingCoef = () => {
 		// Получаем массив коэффициентов использования kи каждого электроприемника
 		const getCoefUsing = obj => +obj.kI
 		const coefUsing = R.map(getCoefUsing, data)
@@ -45,11 +45,10 @@ const Calculating = ({ data }) => {
 		const phom = R.map(getPhom, data)
 
 		// Получаем массив суммы произведений Pном и коэффициентов использования kи
-		const pHomkIMultiply = (x, y) => x * y
 		const multiplyPHomWithKi = R.pipe(
 			R.zipWith,
 			R.sum
-		)(pHomkIMultiply, coefUsing, phom)
+		)(R.multiply, coefUsing, phom)
 		// Получаем сумму Pном
 		const phomSum = R.sum(phom)
 
@@ -63,70 +62,70 @@ const Calculating = ({ data }) => {
 		return multiplyPHomWithKi_divide_phomSum.toFixed(1)
 	}
 
-	console.log('ussingCoef()', ussingCoef())
+	// console.log('effectElectroCount', effectElectroCount(), 'ussingCoef()', ussingCoef())
 
-	// const coefPower = коэффициент расчетной нагрузки по таблице
+	// Комментарий!!!
+	const coefPower = R.find(R.propEq('count', +effectElectroCount()))(coefStandarts)[usingCoef()]
 
-	/* const activePower = () => {
-
+	// Комментарий!!!
+	const activePower = () => {
 		// Получаем массив коэффициентов использования kи каждого электроприемника
 		const getCoefUsing = obj => +obj.kI
 		const usingCoef = R.map(getCoefUsing, data)
 
 		// Получаем массив Pсум
 		const getPsum = obj => +obj.pSumm
-		const pSum = R.map(getCoefReactPow, data)
+		const pSum = R.map(getPsum, data)
 
 		//Получаем массив суммы произведений kи и Pсум
 		const pSumkIMultiply = R.pipe(
 			R.zipWith,
 			R.sum
-		)
-		(R.multiply, usingCoef, pSum) 
+		)(R.multiply, usingCoef, pSum)
 
 		//Получаем активную мощность Pр
-		return (pSumkIMultiply * K )
-	}*/
-
-	const reactivePower = () => {
-		// Получаем массив коэффициентов использования kи каждого электроприемника
-		const getCoefUsing = obj => +obj.kI
-		const coefUsing = R.map(getCoefUsing, data)
-
-		// Получаем массив Pсум
-		const getPsum = obj => +obj.pSumm
-		const pSum = R.map(getCoefReactPow, data)
-
-		// Получаем массив коэффициентов реактивной мощности tgф каждого электроприемника
-		const getCoefReactPow = obj => +obj.tg
-		const ReactPowCoef = R.map(getCoefReactPow, data)
-
-		//Получаем массив произведений kи и Pсум
-		const multiplyKIpSum = (x, y) => x * y
-		const kIPsumMultiply = R.zipWith(multiplyKIpSum, coefUsing, pSum)
-
-		//Получаем массив суммы произведений kи, Pсум и tg ф
-		const kIPsumTgMultiply = (x, y) => x * y
-		const multiplyKIpSumTg = R.pipe(
-			R.zipWith,
-			R.sum
-		)(kIPsumTgMultiply, kIPsumMultiply, ReactPowCoef)
-
-		//	Получаем реактивную мощность Qр
-		if (effectElectroCount > 10) {
-			return kIPsumTgMultiply
-		} else {
-			return 1.1 * kIPsumTgMultiply
-		}
+		return (pSumkIMultiply * coefPower).toFixed(2)
 	}
-	console.log('reactivePower', reactivePower)
+
+	// const reactivePower = () => {
+	// 	// Получаем массив коэффициентов использования kи каждого электроприемника
+	// 	const getCoefUsing = obj => +obj.kI
+	// 	const coefUsing = R.map(getCoefUsing, data)
+
+	// 	// Получаем массив Pсум
+	// 	const getPsum = obj => +obj.pSumm
+	// 	const pSum = R.map(getCoefReactPow, data)
+
+	// 	// Получаем массив коэффициентов реактивной мощности tgф каждого электроприемника
+	// 	const getCoefReactPow = obj => +obj.tg
+	// 	const ReactPowCoef = R.map(getCoefReactPow, data)
+
+	// 	//Получаем массив произведений kи и Pсум
+	// 	const multiplyKIpSum = (x, y) => x * y
+	// 	const kIPsumMultiply = R.zipWith(multiplyKIpSum, coefUsing, pSum)
+
+	// 	//Получаем массив суммы произведений kи, Pсум и tg ф
+	// 	const kIPsumTgMultiply = (x, y) => x * y
+	// 	const multiplyKIpSumTg = R.pipe(
+	// 		R.zipWith,
+	// 		R.sum
+	// 	)(kIPsumTgMultiply, kIPsumMultiply, ReactPowCoef)
+
+	// 	//	Получаем реактивную мощность Qр
+	// 	if (effectElectroCount > 10) {
+	// 		return kIPsumTgMultiply
+	// 	} else {
+	// 		return 1.1 * kIPsumTgMultiply
+	// 	}
+	// }
+	// console.log('reactivePower', reactivePower())
 
 	const fullPower = () => {}
 
 	return (
 		<div className="b-formulas">
 			<ResultItem title="Эффективное число электроприемников" count={effectElectroCount()} unit="шт" img="effect_count_electro" />
-			{/* <ResultItem title="Активная мощность" count={activePower()} unit="кВт" img="result_active_power" /> */}
+			<ResultItem title="Активная мощность" count={activePower()} unit="кВт" img="result_active_power" />
 		</div>
 	)
 }
