@@ -40,21 +40,21 @@
 		align-items: center;
 		padding: 15px;
 
-		&--number {
-			width: 3%;
+		&--number,
+		&--count {
+			width: 9%;
 		}
 		&--name {
-			width: 14%;
+			width: 24%;
 		}
 
-		&--count,
 		&--uhom,
 		&--phom,
 		&--psum,
 		&--ki,
 		&--cos,
 		&--tg {
-			width: 9.2%;
+			width: 9.6%;
 		}
 	}
 

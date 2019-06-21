@@ -105,7 +105,14 @@ const SecondScreen = ({ firstScreenData, setDataFirstScreen }) => {
 						</div>
 						<div className="b-results__item-sidebar">
 							<SideTitle inverse text="итоговые расчеты" />
-							<SideButton inverse text="сохранить расчеты" icon="arrow_next" anchorId="results" onClick={exportFile} />
+							<SideButton
+								style={{ backgroundColor: '#c0c0c0' }}
+								inverse
+								text="сохранить расчеты"
+								icon="arrow_next"
+								anchorId="results"
+								onClick={exportFile}
+							/>
 							<SideButton inverse text="вернуться на главную" icon="arrow_next" anchorId="results" onClick={() => setDataFirstScreen(null)} />
 						</div>
 					</section>

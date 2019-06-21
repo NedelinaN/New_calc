@@ -16,6 +16,10 @@
 			height: 530px;
 			margin-bottom: 40px;
 		}
+
+		&--right .b-results__item-sidebar > * {
+			flex: 0 0 33.333% !important;
+		}
 	}
 
 	&__item-sidebar {

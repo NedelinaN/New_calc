@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SideButton = ({ link, text, icon, anchorId, inverse, onClick }) =>
+const SideButton = ({ link, text, icon, anchorId, inverse, onClick, style }) =>
 	link ? (
 		<a href={`#${anchorId}`} className={`b-side-btn ${inverse && 'inverse'}`}>
 			<span className="b-side-btn__inner">
@@ -18,7 +18,7 @@ const SideButton = ({ link, text, icon, anchorId, inverse, onClick }) =>
 			</span>
 		</a>
 	) : (
-		<button className={`b-side-btn ${inverse && 'inverse'}`} onClick={onClick}>
+		<button style={style} className={`b-side-btn ${inverse && 'inverse'}`} onClick={onClick}>
 			<span className="b-side-btn__inner">
 				{inverse ? (
 					<>
