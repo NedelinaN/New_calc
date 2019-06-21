@@ -138,24 +138,22 @@ const Calculating = ({ data, outputCalculating, setOutputCalculating }) => {
 	if (!outputCalculating) setOutputCalculating([outputEffectElectroCount, outputActivePower, outputReactivePower, outputFullPower, outputCurrent])
 
 	const paramsEffectElectroCount = ['Pn – суммарная номинальная мощность, кВт', 'n – количество электроприемников, шт', 'pn – номинальная мощность, кВт']
+
 	const paramsActivePower = [
 		'Kр - коэффициент расчетной нагрузки',
 		'Kи - средневзешенный коэффициент использования',
 		'Pn – суммарная номинальная мощность, кВт',
 	]
+
 	const paramsReactivePower = [
 		'Kи - средневзешенный коэффициент использования',
 		'Pn – суммарная номинальная мощность, кВт',
 		'tgφ - коэффициент реактивной нагрузки',
 	]
-	const paramsFullPower = [
-		'Pр - активная мощность, кВт',
-		'Qр – реактивная мощность, кВАр',		
-	]
-	const paramsCurrent = [
-		'Sр - полная мощность, кВА'б
-		'U - номинальное напряжение, кВ'
-	]
+
+	const paramsFullPower = ['Pр - активная мощность, кВт', 'Qр – реактивная мощность, кВАр']
+
+	const paramsCurrent = ['Sр - полная мощность, кВА', 'U - номинальное напряжение, кВ']
 
 	return (
 		<div className="b-formulas">
@@ -172,7 +170,7 @@ const Calculating = ({ data, outputCalculating, setOutputCalculating }) => {
 				title="Реактивная мощность"
 				count={outputReactivePower}
 				unit="кВАр"
-				img={outputEfffectElectroCount <= 10 ? 'result_reactive_power_nl10' : 'result_reactive_power_nm10'}
+				img={outputEffectElectroCount <= 10 ? 'result_reactive_power_nl10' : 'result_reactive_power_nm10'}
 			/>
 			<ResultItem params={paramsFullPower} title="Полная мощность" count={outputFullPower} unit="кВА" img="result_full_power" />
 			<ResultItem params={paramsCurrent} title="Расчетный ток" count={outputCurrent} unit="А" img="result_electro_power" />

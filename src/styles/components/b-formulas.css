@@ -1,0 +1,61 @@
+@import '../colors.css';
+@import '../media.css';
+
+.b-formulas {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -60px;
+
+	&__item {
+		width: calc(50% - 60px);
+		margin-left: 60px;
+		margin-bottom: 80px;
+	}
+
+	&__item-top {
+		display: flex;
+		align-items: center;
+		margin-bottom: 20px;
+
+		h2 {
+			margin-right: 20px;
+		}
+	}
+
+	&__item-bottom {
+		display: flex;
+		align-items: center;
+	}
+
+	&__item-formula {
+		display: flex;
+		align-items: center;
+		margin-right: 30px;
+		height: 70px;
+		width: 200px;
+	}
+
+	&__item-count {
+		display: flex;
+		align-items: flex-end;
+	}
+
+	&__item-number {
+		margin-right: 5px;
+		font-size: 30px;
+		font-weight: 600;
+		color: var(--red);
+	}
+
+	&__item-unit {
+		font-size: 14px;
+		line-height: 24px;
+		font-weight: 600;
+	}
+
+	&__item-params {
+		font-size: 13px;
+		font-weight: 500;
+		line-height: 21px;
+	}
+}
