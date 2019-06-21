@@ -7,12 +7,19 @@
 	&__header {
 		display: flex;
 		align-items: center;
+		height: 55px;
+		padding-right: 10px;
 		font-size: 16px;
 		font-weight: 600;
 		color: var(--grey3);
+		box-shadow: 0 5px 15px -13px rgba(0, 0, 0, 0.5);
 
 		@media (--max1600) {
 			font-size: 14px;
+		}
+
+		.b-table__cell {
+			padding-bottom: 22px;
 		}
 	}
 

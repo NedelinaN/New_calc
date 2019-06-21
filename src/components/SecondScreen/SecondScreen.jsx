@@ -10,8 +10,8 @@ import Calculating from '~components/Calculating/Calculating.jsx'
 
 const tableHeader = [
 	'№',
-	'Наименование',
-	'Кол-во',
+	'Наименование ЭП',
+	'Количество',
 	<span className="b-complex">
 		<span className="b-complex__item">Uном</span>
 		<span className="b-complex__item">(кВ)</span>
@@ -40,12 +40,14 @@ const cellClasses = [
 	'b-table__cell--tg',
 ]
 
+const headerDesc = ['', '', '', '', '', '', '', '']
+
 const SecondScreen = ({ firstScreenData, setDataFirstScreen }) => {
 	const [outputCalculating, setOutputCalculating] = useState(null)
 
 	const createTableHeader = () =>
 		tableHeader.map((el, i) => (
-			<div key={i} className={`b-table__cell ${cellClasses[i]}`}>
+			<div key={i} data-desc="dfgsdg" className={`b-table__cell ${cellClasses[i]}`}>
 				{el}
 			</div>
 		))
@@ -91,9 +93,11 @@ const SecondScreen = ({ firstScreenData, setDataFirstScreen }) => {
 							<SideButton text="перейти к расчетам" icon="arrow_next" link anchorId="results" />
 						</div>
 						<div className="b-results__item-content">
+							<div className="b-table">
+								<div className="b-table__header">{createTableHeader()}</div>
+							</div>
 							<ScrollContainer>
 								<div className="b-table">
-									<div className="b-table__header">{createTableHeader()}</div>
 									<div className="b-table__body">{createTableBody()}</div>
 								</div>
 							</ScrollContainer>
