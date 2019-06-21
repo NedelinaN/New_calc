@@ -25,7 +25,7 @@ const FirstScreen = ({ setDataFirstScreen }) => {
 			const data = R.drop(1, XLSX.utils.sheet_to_json(ws, { header: 1 }))
 			/* Update state */
 			const formattedValue = el => {
-				for (let i = 1; i < 11; i++) {
+				for (let i = 1; i < 10; i++) {
 					let isEmptyEl = Boolean(el[i])
 
 					if (!isEmptyEl) {
@@ -39,19 +39,17 @@ const FirstScreen = ({ setDataFirstScreen }) => {
 					count: R.replace(/,/g, '.', el[2].toString()),
 					uHom: R.replace(/,/g, '.', el[3].toString()),
 					pHom: R.replace(/,/g, '.', el[4].toString()),
-					pv: R.replace(/,/g, '.', el[5].toString()),
-					pHom_pv: R.replace(/,/g, '.', el[6].toString()),
-					pSumm: R.replace(/,/g, '.', el[7].toString()),
-					kI: R.replace(/,/g, '.', el[8].toString()),
-					cos: R.replace(/,/g, '.', el[9].toString()),
-					tg: R.replace(/,/g, '.', el[10].toString()),
+					pSumm: R.replace(/,/g, '.', el[5].toString()),
+					kI: R.replace(/,/g, '.', el[6].toString()),
+					cos: R.replace(/,/g, '.', el[7].toString()),
+					tg: R.replace(/,/g, '.', el[8].toString()),
 				}
 			}
 
 			const formattedData = R.map(formattedValue, data)
 
 			if (!R.includes(null, formattedData)) {
-				const checkValuesArr = ['count', 'uHom', 'pHom', 'pv', 'pHom_pv', 'pSumm', 'kI', 'cos', 'tg']
+				const checkValuesArr = ['count', 'uHom', 'pHom', 'pSumm', 'kI', 'cos', 'tg']
 				const formattingObj = obj => R.props(checkValuesArr, obj)
 
 				const checkingValues = arr => {

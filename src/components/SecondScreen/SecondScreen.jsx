@@ -20,11 +20,6 @@ const tableHeader = [
 		<span className="b-complex__item">Pном</span>
 		<span className="b-complex__item">(кВт)</span>
 	</span>,
-	'ПВ(%)',
-	<span className="b-complex">
-		<span className="b-complex__item">Pном</span>
-		<span className="b-complex__item">(100% ПВ)</span>
-	</span>,
 	<span className="b-complex">
 		<span className="b-complex__item">Pсум</span>
 		<span className="b-complex__item">(кВт)</span>
@@ -39,8 +34,6 @@ const cellClasses = [
 	'b-table__cell--count',
 	'b-table__cell--uhom',
 	'b-table__cell--phom',
-	'b-table__cell--pv',
-	'b-table__cell--phompv',
 	'b-table__cell--psum',
 	'b-table__cell--ki',
 	'b-table__cell--cos',
@@ -63,12 +56,10 @@ const SecondScreen = ({ firstScreenData }) => {
 				<div className={`b-table__cell ${cellClasses[2]}`}>{el.count}</div>
 				<div className={`b-table__cell ${cellClasses[3]}`}>{el.uHom}</div>
 				<div className={`b-table__cell ${cellClasses[4]}`}>{el.pHom}</div>
-				<div className={`b-table__cell ${cellClasses[5]}`}>{el.pv}</div>
-				<div className={`b-table__cell ${cellClasses[6]}`}>{el.pHom_pv}</div>
-				<div className={`b-table__cell ${cellClasses[7]}`}>{el.pSumm}</div>
-				<div className={`b-table__cell ${cellClasses[8]}`}>{el.kI}</div>
-				<div className={`b-table__cell ${cellClasses[9]}`}>{el.cos}</div>
-				<div className={`b-table__cell ${cellClasses[10]}`}>{el.tg}</div>
+				<div className={`b-table__cell ${cellClasses[5]}`}>{el.pSumm}</div>
+				<div className={`b-table__cell ${cellClasses[6]}`}>{el.kI}</div>
+				<div className={`b-table__cell ${cellClasses[7]}`}>{el.cos}</div>
+				<div className={`b-table__cell ${cellClasses[8]}`}>{el.tg}</div>
 			</div>
 		))
 	return (
