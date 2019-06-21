@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import React from 'react'
 import * as R from 'ramda'
 import coefStandarts from '~components/coefStandarts'
@@ -136,18 +137,31 @@ const Calculating = ({ data, outputCalculating, setOutputCalculating }) => {
 
 	if (!outputCalculating) setOutputCalculating([outputEfffectElectroCount, outputActivePower, outputReactivePower, outputFullPower, outputCurrent])
 
+	const paramsEfffectElectroCount = [
+		'Pn – суммарная номинальная мощность, кВт',
+		'Pn – суммарная номинальная мощность, кВт',
+		'Pn – суммарная номинальная мощность, кВт',
+	]
+
 	return (
 		<div className="b-formulas">
-			<ResultItem title="Эффективное число электроприемников" count={outputEfffectElectroCount} unit="шт" img="effect_count_electro" />
-			<ResultItem title="Активная мощность" count={outputActivePower} unit="кВт" img="result_active_power" />
 			<ResultItem
+				params={paramsEfffectElectroCount}
+				title="Эффективное число электроприемников"
+				count={outputEfffectElectroCount}
+				unit="шт"
+				img="effect_count_electro"
+			/>
+			<ResultItem params={paramsEfffectElectroCount} title="Активная мощность" count={outputActivePower} unit="кВт" img="result_active_power" />
+			<ResultItem
+				params={paramsEfffectElectroCount}
 				title="Реактивная мощность"
 				count={outputReactivePower}
 				unit="кВАр"
 				img={outputEfffectElectroCount <= 10 ? 'result_reactive_power_nl10' : 'result_reactive_power_nm10'}
 			/>
-			<ResultItem title="Полная мощность" count={outputFullPower} unit="кВА" img="result_full_power" />
-			<ResultItem title="Расчетный ток" count={outputCurrent} unit="А" img="result_electro_power" />
+			<ResultItem params={paramsEfffectElectroCount} title="Полная мощность" count={outputFullPower} unit="кВА" img="result_full_power" />
+			<ResultItem params={paramsEfffectElectroCount} title="Расчетный ток" count={outputCurrent} unit="А" img="result_electro_power" />
 		</div>
 	)
 }

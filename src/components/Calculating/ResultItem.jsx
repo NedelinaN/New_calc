@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ResultItem = ({ title, count, unit, img }) => {
+const ResultItem = ({ title, count, unit, img, params }) => {
 	return (
 		<div className="b-formulas__item">
 			<div className="b-formulas__item-top">
@@ -14,7 +14,11 @@ const ResultItem = ({ title, count, unit, img }) => {
 				<div className="b-formulas__item-formula">
 					<img src={`./src/img/formules/${img}.jpg`} alt={title} />
 				</div>
-				<div className="b-formulas__item-params" />
+				<div className="b-formulas__item-params">
+					{params.map((el, i) => (
+						<div key={i}>{el}</div>
+					))}
+				</div>
 			</div>
 		</div>
 	)
