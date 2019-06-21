@@ -25,7 +25,7 @@ const FirstScreen = ({ setDataFirstScreen }) => {
 			const data = R.drop(1, XLSX.utils.sheet_to_json(ws, { header: 1 }))
 			/* Update state */
 			const formattedValue = el => {
-				for (let i = 1; i < 10; i++) {
+				for (let i = 1; i < 9; i++) {
 					let isEmptyEl = Boolean(el[i])
 
 					if (!isEmptyEl) {
