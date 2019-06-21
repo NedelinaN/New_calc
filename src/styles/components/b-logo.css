@@ -1,5 +1,11 @@
+@import '../media.css';
+
 .b-logo {
 	&--small {
 		height: 20px;
+
+		@media (--max1366) {
+			height: 15px;
+		}
 	}
 }

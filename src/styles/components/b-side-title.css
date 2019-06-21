@@ -11,6 +11,10 @@
 	color: var(--white);
 	background-color: var(--red);
 
+	&.inverse {
+		transform: rotate(180deg);
+	}
+
 	@media (--max1600) {
 		font-size: 12px;
 	}

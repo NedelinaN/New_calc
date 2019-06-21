@@ -7,6 +7,15 @@
 		height: 785px;
 		margin-bottom: 60px;
 		background-color: var(--white);
+
+		@media (--max1600) {
+			height: 690px;
+		}
+
+		@media (--max1366) {
+			height: 530px;
+			margin-bottom: 40px;
+		}
 	}
 
 	&__item-sidebar {
@@ -27,5 +36,10 @@
 		width: 100%;
 		padding: 20px 30px;
 		padding-right: 10px;
+
+		@media (--max1366) {
+			padding: 10px 20px;
+			padding-right: 10px;
+		}
 	}
 }
