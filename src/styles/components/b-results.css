@@ -20,6 +20,14 @@
 		&--right {
 			.b-results__item-content {
 				padding: 80px;
+
+				@media (--max1440) {
+					padding: 40px 50px;
+				}
+
+				@media (--max1440) {
+					padding: 30px 40px;
+				}
 			}
 
 			.b-results__item-sidebar > * {

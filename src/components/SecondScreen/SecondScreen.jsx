@@ -123,11 +123,11 @@ const SecondScreen = ({ firstScreenData, setDataFirstScreen }) => {
 								style={{ backgroundColor: '#c0c0c0' }}
 								inverse
 								text="сохранить расчеты"
-								icon="arrow_next"
+								icon="download"
 								anchorId="results"
 								onClick={exportFile}
 							/>
-							<SideButton inverse text="вернуться на главную" icon="arrow_next" anchorId="results" onClick={() => setDataFirstScreen(null)} />
+							<SideButton inverse text="вернуться на главную" icon="return" anchorId="results" onClick={() => setDataFirstScreen(null)} />
 						</div>
 					</section>
 				</div>
