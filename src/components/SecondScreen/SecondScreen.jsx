@@ -11,7 +11,7 @@ import Calculating from '~components/Calculating/Calculating.jsx'
 const tableHeader = [
 	'№',
 	'Наименование ЭП',
-	'Количество',
+	'Кол-во',
 	<span className="b-complex">
 		<span className="b-complex__item">Uном</span>
 		<span className="b-complex__item">(кВ)</span>
@@ -41,6 +41,9 @@ const cellClasses = [
 ]
 
 const headerDesc = [
+	'Порядковый номер',
+	'Наименование электроприемника',
+	'Количество электроприемников',
 	'Номинальное напряжение',
 	'Номинальная мощность',
 	'Суммарная мощность',
@@ -54,7 +57,7 @@ const SecondScreen = ({ firstScreenData, setDataFirstScreen }) => {
 
 	const createTableHeader = () =>
 		tableHeader.map((el, i) => (
-			<div key={i} data-desc="dfgsdg" className={`b-table__cell ${cellClasses[i]}`}>
+			<div key={i} data-desc={headerDesc[i]} className={`b-table__cell ${cellClasses[i]}`}>
 				{el}
 			</div>
 		))
