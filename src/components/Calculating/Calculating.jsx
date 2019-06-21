@@ -15,7 +15,7 @@ const Calculating = ({ data }) => {
 		const pHom = R.map(pHomToPow, data)
 
 		// Получаем массив суммы произведений квадрата Pном и количества электроприемников
-		const pHomPVCountMultiple = (el, i) => el * counters[i]
+		const pHomCountMultiple = (el, i) => el * counters[i]
 		const mapIndexed = R.addIndex(R.map)
 		const multiplePHomWithCounters = R.pipe(
 			mapIndexed,
