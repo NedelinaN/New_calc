@@ -40,7 +40,14 @@ const cellClasses = [
 	'b-table__cell--tg',
 ]
 
-const headerDesc = ['', '', '', '', '', '', '', '']
+const headerDesc = [
+	'Номинальное напряжение',
+	'Номинальная мощность',
+	'Суммарная мощность',
+	'Коэффициент использования',
+	'Коэффициент активной мощности',
+	'Коэффициент реактивной мощности',
+]
 
 const SecondScreen = ({ firstScreenData, setDataFirstScreen }) => {
 	const [outputCalculating, setOutputCalculating] = useState(null)
