@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import XLSX from 'xlsx'
 // import * as R from 'ramda'
 import H1 from '~ui/H1.jsx'
 import SideTitle from '~ui/SideTitle.jsx'
@@ -40,12 +41,27 @@ const cellClasses = [
 ]
 
 const SecondScreen = ({ firstScreenData, setDataFirstScreen }) => {
+	const [outputCalculating, setOutputCalculating] = useState(null)
+
 	const createTableHeader = () =>
 		tableHeader.map((el, i) => (
 			<div key={i} className={`b-table__cell ${cellClasses[i]}`}>
 				{el}
 			</div>
 		))
+
+	function exportFile() {
+		// добавляем эту функцию в наш компонент SecondPAge.jsx, и вешаем вызов функции на onClick кнопки выгрузки результата
+		const outputData = [
+			['Эффективное число ЭП, шт', 'Активная мощность, кВт', 'Реактивная мощность, кВАр', 'Полная мощность, кВА', 'Расчетный ток, А'],
+			outputCalculating,
+		]
+
+		const ws = XLSX.utils.aoa_to_sheet(outputData) // создание листа книги
+		const wb = XLSX.utils.book_new() // создание книги
+		XLSX.utils.book_append_sheet(wb, ws, 'calculation_result') // добавление листа в книгу
+		XLSX.writeFile(wb, 'calculation_result.xlsx') // Создает файл формата xlsx
+	}
 
 	const createTableBody = () =>
 		firstScreenData.map((el, i) => (
@@ -85,11 +101,11 @@ const SecondScreen = ({ firstScreenData, setDataFirstScreen }) => {
 					</section>
 					<section id="results" className="b-results__item b-results__item--right">
 						<div className="b-results__item-content">
-							<Calculating data={firstScreenData} />
+							<Calculating data={firstScreenData} outputCalculating={outputCalculating} setOutputCalculating={setOutputCalculating} />
 						</div>
 						<div className="b-results__item-sidebar">
 							<SideTitle inverse text="итоговые расчеты" />
-							<SideButton inverse text="сохранить расчеты" icon="arrow_next" link anchorId="results" />
+							<SideButton inverse text="сохранить расчеты" icon="arrow_next" anchorId="results" onClick={exportFile} />
 							<SideButton inverse text="вернуться на главную" icon="arrow_next" anchorId="results" onClick={() => setDataFirstScreen(null)} />
 						</div>
 					</section>

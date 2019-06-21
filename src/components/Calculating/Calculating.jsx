@@ -3,7 +3,7 @@ import * as R from 'ramda'
 import coefStandarts from '~components/coefStandarts'
 import ResultItem from './ResultItem.jsx'
 
-const Calculating = ({ data }) => {
+const Calculating = ({ data, outputCalculating, setOutputCalculating }) => {
 	// Эффективное число электроприемников
 	const effectElectroCount = () => {
 		// Получаем массив количества электроприемников приобразованных в числовые значения
@@ -128,18 +128,26 @@ const Calculating = ({ data }) => {
 		return R.divide(fullPower(), sqrtVoltageMultiply).toFixed(2)
 	}
 
+	const outputEfffectElectroCount = effectElectroCount()
+	const outputActivePower = (activePower() / 1000).toFixed(2)
+	const outputReactivePower = (reactivePower() / 1000).toFixed(2)
+	const outputFullPower = (fullPower() / 1000).toFixed(2)
+	const outputCurrent = current()
+
+	if (!outputCalculating) setOutputCalculating([outputEfffectElectroCount, outputActivePower, outputReactivePower, outputFullPower, outputCurrent])
+
 	return (
 		<div className="b-formulas">
-			<ResultItem title="Эффективное число электроприемников" count={effectElectroCount()} unit="шт" img="effect_count_electro" />
-			<ResultItem title="Активная мощность" count={activePower()} unit="кВт" img="result_active_power" />
+			<ResultItem title="Эффективное число электроприемников" count={outputEfffectElectroCount} unit="шт" img="effect_count_electro" />
+			<ResultItem title="Активная мощность" count={outputActivePower} unit="кВт" img="result_active_power" />
 			<ResultItem
 				title="Реактивная мощность"
-				count={reactivePower()}
+				count={outputReactivePower}
 				unit="кВАр"
-				img={effectElectroCount() <= 10 ? 'result_reactive_power_nl10' : 'result_reactive_power_nm10'}
+				img={outputEfffectElectroCount <= 10 ? 'result_reactive_power_nl10' : 'result_reactive_power_nm10'}
 			/>
-			<ResultItem title="Полная мощность" count={fullPower()} unit="кВА" img="result_full_power" />
-			<ResultItem title="Расчетный ток" count={current()} unit="А" img="result_electro_power" />
+			<ResultItem title="Полная мощность" count={outputFullPower} unit="кВА" img="result_full_power" />
+			<ResultItem title="Расчетный ток" count={outputCurrent} unit="А" img="result_electro_power" />
 		</div>
 	)
 }
