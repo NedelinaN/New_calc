@@ -62,8 +62,6 @@ const Calculating = ({ data }) => {
 		return multiplyPHomWithKi_divide_phomSum.toFixed(1)
 	}
 
-	// console.log('effectElectroCount', effectElectroCount(), 'ussingCoef()', ussingCoef())
-
 	// Коэффициент расченой нагрузки из таблицы
 	const coefPower = R.find(R.propEq('count', effectElectroCount()))(coefStandarts)[usingCoef()]
 
@@ -113,17 +111,13 @@ const Calculating = ({ data }) => {
 		//	Получаем реактивную мощность Qр
 		if (effectElectroCount > 10) {
 			return +(1.1 * multiplyKIpSumTg).toFixed(2)
-		} else {
-			return +multiplyKIpSumTg.toFixed(2)
 		}
+
+		return +multiplyKIpSumTg.toFixed(2)
 	}
 
 	//Полная мощность
-	const fullPower = () => {
-		const fullPow = Math.sqrt(Math.pow(activePower(), 2) + Math.pow(reactivePower(), 2))
-
-		return +fullPow.toFixed(2)
-	}
+	const fullPower = () => +Math.sqrt(Math.pow(activePower(), 2) + Math.pow(reactivePower(), 2))
 
 	//Расчетный ток
 	const current = () => {
