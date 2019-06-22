@@ -23,7 +23,7 @@
 	.b-hint {
 		font-size: 12px;
 		line-height: 18px;
-		color: var(--grey3);
+		color: var(--grey2);
 
 		@media (--max1366) {
 			font-size: 11px;

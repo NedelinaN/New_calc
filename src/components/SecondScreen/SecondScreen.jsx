@@ -70,8 +70,13 @@ const SecondScreen = ({ firstScreenData, setDataFirstScreen }) => {
 		]
 
 		const ws = XLSX.utils.aoa_to_sheet(outputData) // создание листа книги
+		const ws2 = XLSX.utils.aoa_to_sheet(outputData) // создание листа книги
 		const wb = XLSX.utils.book_new() // создание книги
+		const wscols = [{ wch: 6 }, { wch: 7 }, { wch: 10 }, { wch: 20 }]
+
+		ws['!cols'] = wscols
 		XLSX.utils.book_append_sheet(wb, ws, 'calculation_result') // добавление листа в книгу
+		XLSX.utils.book_append_sheet(wb, ws2, 'calculation_result2') // добавление листа в книгу
 		XLSX.writeFile(wb, 'calculation_result.xlsx') // Создает файл формата xlsx
 	}
 

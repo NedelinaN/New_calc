@@ -25,7 +25,7 @@
 
 	&:hover {
 		cursor: pointer;
-		color: var(--grey1);
+		color: var(--white);
 		transition: 0.25s ease-in-out;
 
 		&::before {
@@ -47,7 +47,7 @@
 		bottom: 0;
 		left: 0;
 		right: 0;
-		background-color: var(--grey4);
+		background-color: var(--grey5);
 		transform-origin: center bottom;
 		transform: scaleY(0);
 		transition: transform 0.25s ease-in-out;

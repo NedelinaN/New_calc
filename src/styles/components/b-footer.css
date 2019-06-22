@@ -9,10 +9,11 @@
 		margin-bottom: 5px;
 		font-size: 12px;
 		font-weight: 500;
+		color: var(--red);
 	}
 
 	&__item-text {
 		font-weight: 600;
-		color: var(--white);
+		color: var(--grey5);
 	}
 }

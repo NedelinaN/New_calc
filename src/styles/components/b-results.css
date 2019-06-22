@@ -6,15 +6,20 @@
 		display: flex;
 		height: 785px;
 		margin-bottom: 60px;
+		box-shadow: 0 0 30px -15px rgba(0, 0, 0, 0.5);
 		background-color: var(--white);
 
 		@media (--max1600) {
 			height: 690px;
 		}
 
+		@media (--max1440) {
+			height: 560px;
+		}
+
 		@media (--max1366) {
-			height: 530px;
-			margin-bottom: 40px;
+			height: 510px;
+			margin-bottom: 30px;
 		}
 
 		&--right {
@@ -22,11 +27,11 @@
 				padding: 80px;
 
 				@media (--max1440) {
-					padding: 40px 50px;
+					padding: 30px 40px;
 				}
 
-				@media (--max1440) {
-					padding: 30px 40px;
+				@media (--max1366) {
+					padding: 40px 50px;
 				}
 			}
 

@@ -9,6 +9,6 @@
 	padding: 0 60px;
 
 	@media (--max1366) {
-		padding: 0 40px;
+		padding: 0 30px;
 	}
 }
