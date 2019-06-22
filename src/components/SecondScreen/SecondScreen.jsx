@@ -74,21 +74,24 @@ const SecondScreen = ({ firstScreenData, setDataFirstScreen }) => {
 			['Расчетный ток, А', outputCalculating.outputResults[4]],
 		]
 
-		const middleData = [['1', '2', '3', '3', '3', '3', '3', '3', '3', '3'], ...outputCalculating.middleResults]
+		const middleData = [
+			['Kи∙Pсум', 'n∙Pсум', 'Pн∙Pн', 'Pн∙cosϕ', 'n∙Pн∙Pн', 'Kи∙Pн', 'Kи∙Pн∙tgϕ', 'Kи∙Pсум∙tgϕ', 'Kи∙Pн∙cosϕ', 'Kи∙n∙cosϕ'],
+			...outputCalculating.middleResults,
+		]
 
 		const middle = XLSX.utils.aoa_to_sheet(middleData) // создание листа книги промежуточные
 		const final = XLSX.utils.aoa_to_sheet(outputData) // создание листа книги финальные
 		const wb = XLSX.utils.book_new() // создание книги
 
-		const widthMiddleCols = [{ wch: 6 }, { wch: 7 }, { wch: 10 }, { wch: 20 }]
-		const widthFinalCols = [{ wch: 6 }, { wch: 7 }, { wch: 10 }, { wch: 20 }]
+		const widthMiddleCols = [{ wch: 8 }, { wch: 8 }, { wch: 8 }, { wch: 8 }, { wch: 8 }, { wch: 8 }, { wch: 10 }, { wch: 10 }, { wch: 10 }, { wch: 10 }]
+		const widthFinalCols = [{ wch: 25 }, { wch: 15 }]
 
 		middle['!cols'] = widthMiddleCols
 		final['!cols'] = widthFinalCols
 
-		XLSX.utils.book_append_sheet(wb, middle, 'промежуточные расчеты') // добавление листа в книгу промежуточные
-		XLSX.utils.book_append_sheet(wb, final, 'расчетные величины') // добавление листа в книгу финальные
-		XLSX.writeFile(wb, 'calculation_result.xlsx') // Создает файл формата xlsx
+		XLSX.utils.book_append_sheet(wb, middle, 'Промежуточные_расчеты') // добавление листа в книгу промежуточные
+		XLSX.utils.book_append_sheet(wb, final, 'Расчетные_величины') // добавление листа в книгу финальные
+		XLSX.writeFile(wb, 'results.xlsx') // Создает файл формата xlsx
 	}
 
 	const createTableBody = () =>
