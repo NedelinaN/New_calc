@@ -129,6 +129,190 @@ const Calculating = ({ data, outputCalculating, setOutputCalculating }) => {
 		return R.divide(fullPower(), sqrtVoltageMultiply).toFixed(2)
 	}
 
+	//Kи*Pсум
+	const kipsum = () => {
+		// Получаем массив коэффициентов использования kи каждого электроприемника
+		const getCoefUsing = obj => +obj.kI
+		const usingCoef = R.map(getCoefUsing, data)
+
+		// Получаем массив номинальной мощности Pном каждого электроприемника
+		const getPsum = obj => +obj.pSumm
+		const psum = R.map(getPsum, data)
+		const pSumKiMultiply = R.zipWith(R.multiply, usingCoef, psum)
+		const fixed = x => x.toFixed(2)
+
+		return R.map(fixed, pSumKiMultiply)
+	}
+	// console.log('kipsum', kipsum())
+
+	// n*Pсум
+	const npsum = () => {
+		// Получаем массив количества электроприемников приобразованных в числовые значения
+		const getCounters = obj => +obj.count
+		const counters = R.map(getCounters, data)
+
+		// Получаем массив Pсум
+		const getPsum = obj => +obj.pSumm
+		const pSum = R.map(getPsum, data)
+		const pSumNMultiply = R.zipWith(R.multiply, counters, pSum)
+		const fixed = x => x.toFixed(2)
+
+		return R.map(fixed, pSumNMultiply)
+	}
+	// console.log('npsum', npsum())
+
+	//Pном*Pном
+	const pnomsq = () => {
+		// Получаем массив номинальной мощности Pном каждого электроприемника
+		const getPhom = obj => +obj.pHom
+		const phom = R.map(getPhom, data)
+		const double = x => x * 2
+		const phomPow = R.map(double, phom)
+		const fixed = x => x.toFixed(2)
+
+		return R.map(fixed, phomPow)
+	}
+	// console.log('pnomsq', pnomsq())
+
+	//Рн*cosф
+	const pnomcos = () => {
+		// Получаем массив номинальной мощности Pном каждого электроприемника
+		const getPhom = obj => +obj.pHom
+		const phom = R.map(getPhom, data)
+
+		const getCos = obj => +obj.cos
+		const cos = R.map(getCos, data)
+		const pHomCosMultiply = R.zipWith(R.multiply, phom, cos)
+		const fixed = x => x.toFixed(2)
+
+		return R.map(fixed, pHomCosMultiply)
+	}
+	// console.log('pnomcos', pnomcos())
+
+	//n*Pн2
+	const nphom = () => {
+		// Получаем массив количества электроприемников приобразованных в числовые значения
+		const getCounters = obj => +obj.count
+		const counters = R.map(getCounters, data)
+
+		// Получаем массив номинальной мощности Pном каждого электроприемника
+		const getPhom = obj => +obj.pHom
+		const phom = R.map(getPhom, data)
+
+		const double = x => x * 2
+		const phomPow = R.map(double, phom)
+		const nPhomMultiply = R.zipWith(R.multiply, counters, phomPow)
+		const fixed = x => x.toFixed(2)
+
+		return R.map(fixed, nPhomMultiply)
+	}
+	// console.log('nphom', nphom())
+
+	//Ки*Рн
+	const kiphom = () => {
+		// Получаем массив номинальной мощности Pном каждого электроприемника
+		const getPhom = obj => +obj.pHom
+		const phom = R.map(getPhom, data)
+
+		// Получаем массив коэффициентов использования kи каждого электроприемника
+		const getCoefUsing = obj => +obj.kI
+		const usingCoef = R.map(getCoefUsing, data)
+		const kIpHomMultiply = R.zipWith(R.multiply, usingCoef, phom)
+		const fixed = x => x.toFixed(2)
+
+		return R.map(fixed, kIpHomMultiply)
+	}
+	// console.log('kiphom', kiphom())
+
+	//Ки*Рн*tgф
+	const kiphomtg = () => {
+		// Получаем массив номинальной мощности Pном каждого электроприемника
+		const getPhom = obj => +obj.pHom
+		const phom = R.map(getPhom, data)
+
+		// Получаем массив коэффициентов использования kи каждого электроприемника
+		const getCoefUsing = obj => +obj.kI
+		const usingCoef = R.map(getCoefUsing, data)
+
+		// Получаем массив коэффициентов реактивной мощности tgф каждого электроприемника
+		const getCoefReactPow = obj => +obj.tg
+		const ReactPowCoef = R.map(getCoefReactPow, data)
+
+		//Получаем массив произведений kи и Pсум
+		const kIPhomMultiply = R.zipWith(R.multiply, usingCoef, phom)
+		const kIPhomTgMultiply = R.zipWith(R.multiply, kIPhomMultiply, ReactPowCoef)
+		const fixed = x => x.toFixed(2)
+
+		return R.map(fixed, kIPhomTgMultiply)
+	}
+	// console.log('kiphomtg', kiphomtg())
+
+	//Ки*Рсум*tgф
+	const kipsumtg = () => {
+		// Получаем массив коэффициентов использования kи каждого электроприемника
+		const getCoefUsing = obj => +obj.kI
+		const usingCoef = R.map(getCoefUsing, data)
+
+		// Получаем массив коэффициентов реактивной мощности tgф каждого электроприемника
+		const getCoefReactPow = obj => +obj.tg
+		const ReactPowCoef = R.map(getCoefReactPow, data)
+
+		// Получаем массив Pсум
+		const getPsum = obj => +obj.pSumm
+		const pSum = R.map(getPsum, data)
+
+		const kIPsumMultiply = R.zipWith(R.multiply, usingCoef, pSum)
+		const kIPsumTgMultiply = R.zipWith(R.multiply, kIPsumMultiply, ReactPowCoef)
+		const fixed = x => x.toFixed(2)
+
+		return R.map(fixed, kIPsumTgMultiply)
+	}
+	// console.log('kipsumtg', kipsumtg())
+
+	//Ки*Рн*cosф
+	const kiphomcos = () => {
+		// Получаем массив коэффициентов использования kи каждого электроприемника
+		const getCoefUsing = obj => +obj.kI
+		const usingCoef = R.map(getCoefUsing, data)
+
+		// Получаем массив коэффициентов реактивной мощности cosф каждого электроприемника
+		const getCoefReactPow = obj => +obj.cos
+		const ActPowCoef = R.map(getCoefReactPow, data)
+
+		// Получаем массив номинальной мощности Pном каждого электроприемника
+		const getPhom = obj => +obj.pHom
+		const phom = R.map(getPhom, data)
+
+		const kIPhomMultiply = R.zipWith(R.multiply, usingCoef, phom)
+		const kIPhomCosMultiply = R.zipWith(R.multiply, kIPhomMultiply, ActPowCoef)
+		const fixed = x => x.toFixed(2)
+
+		return R.map(fixed, kIPhomCosMultiply)
+	}
+	// console.log('kiphomcos', kiphomcos())
+
+	//Ки*n*cosф
+	const nkicos = () => {
+		// Получаем массив коэффициентов использования kи каждого электроприемника
+		const getCoefUsing = obj => +obj.kI
+		const usingCoef = R.map(getCoefUsing, data)
+
+		// Получаем массив коэффициентов реактивной мощности cosф каждого электроприемника
+		const getCoefReactPow = obj => +obj.cos
+		const ActPowCoef = R.map(getCoefReactPow, data)
+
+		// Получаем массив количества электроприемников приобразованных в числовые значения
+		const getCounters = obj => +obj.count
+		const counters = R.map(getCounters, data)
+
+		const kInMultiply = R.zipWith(R.multiply, usingCoef, counters)
+		const kInCosMultiply = R.zipWith(R.multiply, kInMultiply, ActPowCoef)
+		const fixed = x => x.toFixed(2)
+
+		return R.map(fixed, kInCosMultiply)
+	}
+	console.log('nkicos', nkicos())
+
 	const outputEffectElectroCount = effectElectroCount()
 	const outputActivePower = (activePower() / 1000).toFixed(2)
 	const outputReactivePower = (reactivePower() / 1000).toFixed(2)
