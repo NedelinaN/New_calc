@@ -64,19 +64,30 @@ const SecondScreen = ({ firstScreenData, setDataFirstScreen }) => {
 
 	function exportFile() {
 		// добавляем эту функцию в наш компонент SecondPAge.jsx, и вешаем вызов функции на onClick кнопки выгрузки результата
+
 		const outputData = [
-			['Эффективное число ЭП, шт', 'Активная мощность, кВт', 'Реактивная мощность, кВАр', 'Полная мощность, кВА', 'Расчетный ток, А'],
-			outputCalculating,
+			['Название величины', 'Значение'],
+			['Эффективное число ЭП, шт', outputCalculating.outputResults[0]],
+			['Активная мощность, кВт', outputCalculating.outputResults[1]],
+			['Реактивная мощность, кВАр', outputCalculating.outputResults[2]],
+			['Полная мощность, кВА', outputCalculating.outputResults[3]],
+			['Расчетный ток, А', outputCalculating.outputResults[4]],
 		]
 
-		const ws = XLSX.utils.aoa_to_sheet(outputData) // создание листа книги
-		const ws2 = XLSX.utils.aoa_to_sheet(outputData) // создание листа книги
-		const wb = XLSX.utils.book_new() // создание книги
-		const wscols = [{ wch: 6 }, { wch: 7 }, { wch: 10 }, { wch: 20 }]
+		const middleData = [['1', '2', '3', '3', '3', '3', '3', '3', '3', '3'], ...outputCalculating.middleResults]
 
-		ws['!cols'] = wscols
-		XLSX.utils.book_append_sheet(wb, ws, 'calculation_result') // добавление листа в книгу
-		XLSX.utils.book_append_sheet(wb, ws2, 'calculation_result2') // добавление листа в книгу
+		const middle = XLSX.utils.aoa_to_sheet(middleData) // создание листа книги промежуточные
+		const final = XLSX.utils.aoa_to_sheet(outputData) // создание листа книги финальные
+		const wb = XLSX.utils.book_new() // создание книги
+
+		const widthMiddleCols = [{ wch: 6 }, { wch: 7 }, { wch: 10 }, { wch: 20 }]
+		const widthFinalCols = [{ wch: 6 }, { wch: 7 }, { wch: 10 }, { wch: 20 }]
+
+		middle['!cols'] = widthMiddleCols
+		final['!cols'] = widthFinalCols
+
+		XLSX.utils.book_append_sheet(wb, middle, 'промежуточные расчеты') // добавление листа в книгу промежуточные
+		XLSX.utils.book_append_sheet(wb, final, 'расчетные величины') // добавление листа в книгу финальные
 		XLSX.writeFile(wb, 'calculation_result.xlsx') // Создает файл формата xlsx
 	}
 

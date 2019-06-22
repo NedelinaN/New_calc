@@ -1,3 +1,4 @@
+/* eslint-disable max-statements */
 /* eslint-disable max-lines-per-function */
 import React from 'react'
 import * as R from 'ramda'
@@ -311,15 +312,49 @@ const Calculating = ({ data, outputCalculating, setOutputCalculating }) => {
 
 		return R.map(fixed, kInCosMultiply)
 	}
-	console.log('nkicos', nkicos())
+	// console.log('nkicos', nkicos())
 
+	// Промежуточные результаты
+	const outputKipsum = kipsum()
+	const outputNpsum = npsum()
+	const outputPnomsq = pnomsq()
+	const outputPnomcos = pnomcos()
+	const outputNphom = nphom()
+	const outputKiphom = kiphom()
+	const outputKiphomtg = kiphomtg()
+	const outputKipsumtg = kipsumtg()
+	const outputKiphomcos = kiphomcos()
+	const outputNkicos = nkicos()
+	let outputMiddleArr = []
+
+	for (let i = 0; i <= R.length(data); i++) {
+		outputMiddleArr.push([
+			outputKipsum[i],
+			outputNpsum[i],
+			outputPnomsq[i],
+			outputPnomcos[i],
+			outputNphom[i],
+			outputKiphom[i],
+			outputKiphomtg[i],
+			outputKipsumtg[i],
+			outputKiphomcos[i],
+			outputNkicos[i],
+		])
+	}
+
+
+	// Финальные результаты
 	const outputEffectElectroCount = effectElectroCount()
 	const outputActivePower = (activePower() / 1000).toFixed(2)
 	const outputReactivePower = (reactivePower() / 1000).toFixed(2)
 	const outputFullPower = (fullPower() / 1000).toFixed(2)
 	const outputCurrent = current()
 
-	if (!outputCalculating) setOutputCalculating([outputEffectElectroCount, outputActivePower, outputReactivePower, outputFullPower, outputCurrent])
+	if (!outputCalculating)
+		setOutputCalculating({
+			outputResults: [outputEffectElectroCount, outputActivePower, outputReactivePower, outputFullPower, outputCurrent],
+			middleResults: outputMiddleArr,
+		})
 	const paramsEffectElectroCount = ['Pn – суммарная номинальная мощность, кВт', 'n – количество электроприемников, шт', 'pn – номинальная мощность, кВт']
 	const paramsActivePower = ['Kр – коэффициент расчетной мощности', 'Kи – коэффициент использования', 'Pn – суммарная номинальная мощность, кВт']
 	const paramsReactivePower = ['Kи – коэффициент использования', 'Pn – суммарная номинальная мощность, кВт', 'tgφ – коэффициент реактивной нагрузки']
