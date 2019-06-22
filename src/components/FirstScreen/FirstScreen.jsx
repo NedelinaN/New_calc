@@ -93,7 +93,7 @@ const FirstScreen = ({ setDataFirstScreen }) => {
 					<div className="b-description">
 						Расчет производится на основе РТМ 36.18.32.4-92 по форме Ф636-92.
 						<br />
-						Для выполнения расчетов, пожалуйста загрузите таблицу в следующих форматах: XLSX/XLSM, XML, XLS/XLW.
+						Для выполнения расчетов, пожалуйста, загрузите таблицу в следующих форматах: XLSX/XLSM, XML, XLS.
 					</div>
 					<div className="b-download__activity">
 						<DragDropFile text="загрузить" handleFile={handleFile} />
