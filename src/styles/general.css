@@ -21,7 +21,7 @@ body {
 	margin: 0;
 	overflow-x: hidden;
 	color: var(--grey1);
-	background-color: var(--grey7);
+	background-color: var(--black);
 }
 
 h1,
@@ -34,7 +34,7 @@ h4 {
 
 h1 {
 	font-size: 38px;
-	color: var(--grey1);
+	color: var(--white);
 
 	@media (--max1600) {
 		font-size: 30px;

@@ -74,23 +74,14 @@ const SecondScreen = ({ firstScreenData, setDataFirstScreen }) => {
 			['Расчетный ток, А', outputCalculating.outputResults[4]],
 		]
 
-		const middleData = [
-			['Kи∙Pсум', 'n∙Pсум', 'Pн∙Pн', 'Pн∙cosϕ', 'n∙Pн∙Pн', 'Kи∙Pн', 'Kи∙Pн∙tgϕ', 'Kи∙Pсум∙tgϕ', 'Kи∙Pн∙cosϕ', 'Kи∙n∙cosϕ'],
-			...outputCalculating.middleResults,
-		]
-
-		const middle = XLSX.utils.aoa_to_sheet(middleData) // создание листа книги промежуточные
 		const final = XLSX.utils.aoa_to_sheet(outputData) // создание листа книги финальные
 		const wb = XLSX.utils.book_new() // создание книги
 
-		const widthMiddleCols = [{ wch: 8 }, { wch: 8 }, { wch: 8 }, { wch: 8 }, { wch: 8 }, { wch: 8 }, { wch: 10 }, { wch: 10 }, { wch: 10 }, { wch: 10 }]
 		const widthFinalCols = [{ wch: 25 }, { wch: 15 }]
 		const outputExtention = window.extention || '.xlsx'
 
-		middle['!cols'] = widthMiddleCols
 		final['!cols'] = widthFinalCols
 
-		XLSX.utils.book_append_sheet(wb, middle, 'Промежуточные_расчеты') // добавление листа в книгу промежуточные
 		XLSX.utils.book_append_sheet(wb, final, 'Расчетные_величины') // добавление листа в книгу финальные
 		XLSX.writeFile(wb, `Расчеты электрической нагрузки${outputExtention}`) // Создает файл формата xlsx
 	}
