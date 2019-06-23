@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import React, { useState } from 'react'
 import * as R from 'ramda'
 import XLSX from 'xlsx'
@@ -8,7 +9,7 @@ import Logo from '~ui/Logo.jsx'
 const vaildateRegExp = /^[0-9]*\.?[0-9]*$/g
 
 const FirstScreen = ({ setDataFirstScreen }) => {
-	const [validateError, setValidateError] = useState(false)
+	const [validateError, setValidateError] = useState(null)
 
 	function handleFile(file) {
 		const reader = new FileReader()
@@ -28,7 +29,13 @@ const FirstScreen = ({ setDataFirstScreen }) => {
 					let isEmptyEl = Boolean(el[i])
 
 					if (!isEmptyEl) {
-						setValidateError(true)
+						setValidateError(
+							<div className="b-error">
+								Исходные данные содержат пустые ячейки.
+								<br />
+								Пожалуйста, заполните пустые ячейки.
+							</div>
+						)
 						return null
 					}
 				}
@@ -66,7 +73,13 @@ const FirstScreen = ({ setDataFirstScreen }) => {
 				const finalChecking = R.includes(true, formattedDataForChecking)
 
 				if (finalChecking) {
-					setValidateError(true)
+					setValidateError(
+						<div className="b-error">
+							Исходные данные содержат недопустимые символы для расчетных единиц.
+							<br />
+							Данные для расчетных единиц могут содержать цифры, точки, запятые
+						</div>
+					)
 				} else {
 					setDataFirstScreen(formattedData)
 				}
@@ -97,13 +110,7 @@ const FirstScreen = ({ setDataFirstScreen }) => {
 					</div>
 					<div className="b-download__activity">
 						<DragDropFile text="загрузить" handleFile={handleFile} />
-						{validateError ? (
-							<div className="b-error">
-								Исходные данные содержат недопустимые символы для расчетных единиц.
-								<br />
-								Данные для расчетных единиц могут содержать цифры, точки, запятые
-							</div>
-						) : null}
+						{validateError ? validateError : null}
 					</div>
 				</div>
 			</main>

@@ -144,7 +144,6 @@ const Calculating = ({ data, outputCalculating, setOutputCalculating }) => {
 
 		return R.map(fixed, pSumKiMultiply)
 	}
-	// console.log('kipsum', kipsum())
 
 	// n*Pсум
 	const npsum = () => {
@@ -160,7 +159,6 @@ const Calculating = ({ data, outputCalculating, setOutputCalculating }) => {
 
 		return R.map(fixed, pSumNMultiply)
 	}
-	// console.log('npsum', npsum())
 
 	//Pном*Pном
 	const pnomsq = () => {
@@ -173,7 +171,6 @@ const Calculating = ({ data, outputCalculating, setOutputCalculating }) => {
 
 		return R.map(fixed, phomPow)
 	}
-	// console.log('pnomsq', pnomsq())
 
 	//Рн*cosф
 	const pnomcos = () => {
@@ -188,7 +185,6 @@ const Calculating = ({ data, outputCalculating, setOutputCalculating }) => {
 
 		return R.map(fixed, pHomCosMultiply)
 	}
-	// console.log('pnomcos', pnomcos())
 
 	//n*Pн2
 	const nphom = () => {
@@ -207,7 +203,6 @@ const Calculating = ({ data, outputCalculating, setOutputCalculating }) => {
 
 		return R.map(fixed, nPhomMultiply)
 	}
-	// console.log('nphom', nphom())
 
 	//Ки*Рн
 	const kiphom = () => {
@@ -223,7 +218,6 @@ const Calculating = ({ data, outputCalculating, setOutputCalculating }) => {
 
 		return R.map(fixed, kIpHomMultiply)
 	}
-	// console.log('kiphom', kiphom())
 
 	//Ки*Рн*tgф
 	const kiphomtg = () => {
@@ -246,7 +240,6 @@ const Calculating = ({ data, outputCalculating, setOutputCalculating }) => {
 
 		return R.map(fixed, kIPhomTgMultiply)
 	}
-	// console.log('kiphomtg', kiphomtg())
 
 	//Ки*Рсум*tgф
 	const kipsumtg = () => {
@@ -268,7 +261,6 @@ const Calculating = ({ data, outputCalculating, setOutputCalculating }) => {
 
 		return R.map(fixed, kIPsumTgMultiply)
 	}
-	// console.log('kipsumtg', kipsumtg())
 
 	//Ки*Рн*cosф
 	const kiphomcos = () => {
@@ -290,7 +282,6 @@ const Calculating = ({ data, outputCalculating, setOutputCalculating }) => {
 
 		return R.map(fixed, kIPhomCosMultiply)
 	}
-	// console.log('kiphomcos', kiphomcos())
 
 	//Ки*n*cosф
 	const nkicos = () => {
@@ -312,7 +303,6 @@ const Calculating = ({ data, outputCalculating, setOutputCalculating }) => {
 
 		return R.map(fixed, kInCosMultiply)
 	}
-	// console.log('nkicos', nkicos())
 
 	// Промежуточные результаты
 	const outputKipsum = kipsum()
@@ -341,7 +331,6 @@ const Calculating = ({ data, outputCalculating, setOutputCalculating }) => {
 			outputNkicos[i],
 		])
 	}
-
 
 	// Финальные результаты
 	const outputEffectElectroCount = effectElectroCount()

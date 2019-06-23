@@ -25,6 +25,8 @@ const DragDropFile = ({ handleFile, text }) => {
 	function handleChange(e) {
 		const files = e.target.files
 		if (files && files[0]) {
+			const extension = files[0].name.match(/\.[0-9a-z]+$/i)
+			window.extention = extension[0]
 			setHint(files[0].name)
 			handleFile(files[0])
 		}
