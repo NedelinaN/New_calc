@@ -334,9 +334,9 @@ const Calculating = ({ data, outputCalculating, setOutputCalculating }) => {
 
 	// Финальные результаты
 	const outputEffectElectroCount = effectElectroCount()
-	const outputActivePower = (activePower() / 1000).toFixed(2)
-	const outputReactivePower = (reactivePower() / 1000).toFixed(2)
-	const outputFullPower = (fullPower() / 1000).toFixed(2)
+	const outputActivePower = activePower()
+	const outputReactivePower = reactivePower()
+	const outputFullPower = fullPower()
 	const outputCurrent = current()
 
 	if (!outputCalculating)
