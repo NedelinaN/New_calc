@@ -117,7 +117,7 @@ const FirstScreen = ({ setDataFirstScreen }) => {
 			<footer className="b-footer">
 				<div className="b-footer__item">
 					<div className="b-footer__item-label">Версия</div>
-					<div className="b-footer__item-text">1.0.0</div>
+					<div className="b-footer__item-text">0.9</div>
 				</div>
 
 				<div className="b-footer__item">
