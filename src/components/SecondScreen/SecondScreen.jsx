@@ -85,13 +85,14 @@ const SecondScreen = ({ firstScreenData, setDataFirstScreen }) => {
 
 		const widthMiddleCols = [{ wch: 8 }, { wch: 8 }, { wch: 8 }, { wch: 8 }, { wch: 8 }, { wch: 8 }, { wch: 10 }, { wch: 10 }, { wch: 10 }, { wch: 10 }]
 		const widthFinalCols = [{ wch: 25 }, { wch: 15 }]
+		const outputExtention = window.extention || '.xlsx'
 
 		middle['!cols'] = widthMiddleCols
 		final['!cols'] = widthFinalCols
 
 		XLSX.utils.book_append_sheet(wb, middle, 'Промежуточные_расчеты') // добавление листа в книгу промежуточные
 		XLSX.utils.book_append_sheet(wb, final, 'Расчетные_величины') // добавление листа в книгу финальные
-		XLSX.writeFile(wb, 'results.xlsx') // Создает файл формата xlsx
+		XLSX.writeFile(wb, `Расчеты электрической нагрузки${outputExtention}`) // Создает файл формата xlsx
 	}
 
 	const createTableBody = () =>
